@@ -4,7 +4,7 @@ import React from 'react'
 
 type Props = {}
 
-const NavBar = (props: Props) => {
+const NavBar = async (props: Props) => {
     // TODO: reterive user
     const user = true;
     
