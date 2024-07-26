@@ -9,6 +9,7 @@ import { HeroParallax } from "@/components/global/templates-parallax";
 import { quotes, templates } from "@/lib/constant";
 import { LampComponent } from "@/components/global/lamp-effect";
 import Resume3DCard from "@/components/global/resume-3d-card";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -28,10 +29,12 @@ export default function Home() {
                   className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
                   <Brain className="h-5 w-5 mr-[-8px]" /> Generate Resume
                 </Button>
-                <Button
-                  className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
-                  <Sparkles className="h-5 w-5 mr-[-8px]" /> Enhance Resume
-                </Button>
+                <Link href={"/enhance-resume/upload-resume"}>
+                  <Button
+                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
+                    <Sparkles className="h-5 w-5 mr-[-8px]" /> Enhance Resume
+                  </Button>
+                </Link>
               </div>
               <h1 className="text-5xl md:text-8xl  bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
                 <FlipWords words={["Generate", "Enhance"]}/>
@@ -67,7 +70,7 @@ export default function Home() {
       </section>
 
       {/* Enhance Resume Section */}
-      <section className="mt-[-500px] pb-[200px] bg-neutral-950">
+      <section className="mt-[-500px] bg-neutral-950">
         <LampComponent />
 
         <div className="flex items-center justify-center flex-col md:flex-row gap-20 -mt-72">
