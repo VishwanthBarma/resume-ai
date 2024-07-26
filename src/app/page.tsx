@@ -70,9 +70,50 @@ export default function Home() {
       <section className="mt-[-500px] pb-[200px] bg-neutral-950">
         <LampComponent />
 
-        <div className="flex items-center justify-center flex-col md:flex-row gap-8 -mt-72">
-          <div>
-
+        <div className="flex items-center justify-center flex-col md:flex-row gap-20 -mt-72">
+          <div className="z-40">
+            <div className="flex flex-col mb-5">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Upload Your Resume
+              </h1>
+              <h1 className="text-sm text-neutral-500">Effortlessly upload your existing resume for analysis.</h1>
+            </div>
+            <div className="flex flex-col mb-5">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Analyse Your Resume
+              </h1>
+              <h1 className="text-sm text-neutral-500">Our AI meticulously reviews your resume for content and structure.</h1>
+            </div>
+            <div className="flex flex-col mb-5">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Get AI Suggestions
+              </h1>
+              <h1 className="text-sm text-neutral-500">Receive personalized suggestions to enhance your resume.</h1>
+            </div>
+            <div className="flex flex-col mb-5">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Clarify Details
+              </h1>
+              <h1 className="text-sm text-neutral-500">Provide additional information to tailor your resume further.</h1>
+            </div>
+            <div className="flex flex-col mb-5">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Identify Mistakes
+              </h1>
+              <h1 className="text-sm text-neutral-500">Discover and correct errors in your resume.</h1>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="font-semibold text-xl flex items-center text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-white mr-2"></span>
+                Detailed Questions
+              </h1>
+              <h1 className="text-sm text-neutral-500">Answer targeted questions to improve each resume section.</h1>
+            </div>
           </div>
           <div>
             <Resume3DCard />
