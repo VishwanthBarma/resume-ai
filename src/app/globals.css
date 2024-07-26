@@ -80,3 +80,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add this to your global CSS or component-specific CSS */
+/* Add this to your global CSS or component-specific CSS */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-keyframes span {
+  animation: fadeInOut 6s ease-in-out infinite;
+}
+
