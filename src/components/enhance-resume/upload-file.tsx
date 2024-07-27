@@ -1,5 +1,5 @@
 import { CloudUpload, Inbox } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 interface Props {
@@ -7,25 +7,48 @@ interface Props {
 }
 
 const UploadFile = (props: Props) => {
+
+    const [loading, setLoading] = useState(false);
+
     const {getRootProps, getInputProps} = useDropzone({
         accept: {"application/pdf" : [".pdf"]},
         maxFiles: 1,
         onDrop: async (acceptedFiles) => {
             const file = acceptedFiles[0];
             if (file.size > 10 * 1024 * 1024) {
-              // bigger than 10mb!
               console.log("Pdf size is >10mb")
+              // show it on display
               return;
             }
 
             parseResume(file);
+
         }
     })
 
     const parseResume = async (file: File) => {
-        console.log("here Parsing..")
-        console.log(file)
+        console.log(file);
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        console.log(formData);
+
+        try{
+            const response = await fetch('/api/enhance-resume/upload-resume', {
+                method: 'POST',
+                body: formData,
+            })
+
+            const result = await response.json();
+            console.log("Result From Server: ", result);
+
+        }catch(error){
+            console.error('Error uploading file: ', error);
+        }
     }
+
+
 
 
     return (
