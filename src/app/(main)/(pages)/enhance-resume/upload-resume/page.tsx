@@ -1,42 +1,42 @@
-"use client"
-import UploadFile from '@/components/enhance-resume/upload-file';
-import React, { useState } from 'react'
+"use client";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import PDFToText from 'react-pdftotext';
 
-interface Props {
-    
-}
+const UploadResume: React.FC = () => {
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        extractText(file);
+    }, []);
 
-const UploadResume = () => {
-    const [file, setFile] = useState<File | null>(null);
-    const [uploading, setUploading] = useState(false);
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        accept: { 'application/pdf': ['.pdf'] },
+        onDrop
+    });
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const file = event.target.files[0];
+    const extractText = async (file: File | Blob) => {
+        try {
+            const text = await PDFToText(file);
 
-            if (file.type !== "application/pdf") {
-                console.error(file.name, "is not a PDF file.");
-                // handle the error: display the error to user
-                return;
-            }
-
-            // implement redux for state management : to display to user.
-            setFile(file);
-
-            console.log(file)
+            console.log("Number of Characters: ", text.length);
+            console.log('Extracted Text:', text);
+        } catch (error) {
+            console.error('Error extracting text:', error);
         }
     };
 
-
-    
     return (
-        <div className='flex justify-center h-full mt-36'>
-            <div className=' border-neutral-800 border-2 rounded-lg selection:rounded-lg h-fit p-8 flex flex-col items-center justify-center'>
-                <h1 className='text-4xl font-bold mb-8'>Upload Your Resume</h1>
-                <UploadFile />
+        <div className='flex flex-col items-center mt-32'>
+            <h1 className='text-4xl font-semibold mb-10'>Upload Your Resume</h1>
+            <div
+                {...getRootProps()}
+                className={`px-10 py-20 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
+            >
+                <input {...getInputProps()} />
+                <p>Drop your resume here or choose a file.</p>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default UploadResume
+export default UploadResume;
