@@ -35,8 +35,8 @@ const UploadResume: React.FC = () => {
 
             const result = await response.json();
             const suggestions = result.suggestions;
-            
-            console.log("Generated Suggestions: ", suggestions);
+
+            console.log("Generated Suggestions Succesfully.");
 
         } catch (error) {
             console.error('Error extracting text:', error);
@@ -48,7 +48,7 @@ const UploadResume: React.FC = () => {
             <h1 className='text-4xl font-semibold mb-10'>Upload Your Resume</h1>
             <div
                 {...getRootProps()}
-                className={`px-10 py-20 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
+                className={`px-10 py-20 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-pink-500' : 'border-gray-300'} rounded-lg`}
             >
                 <input {...getInputProps()} />
                 <p>Drop your resume here or choose a file.</p>
