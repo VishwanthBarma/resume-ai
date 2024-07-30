@@ -1,11 +1,14 @@
 "use client";
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import PDFToText from 'react-pdftotext';
 
 const UploadResume: React.FC = () => {
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
+
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
+        setResumeFile(file);
         extractText(file);
     }, []);
 
@@ -18,8 +21,23 @@ const UploadResume: React.FC = () => {
         try {
             const text = await PDFToText(file);
 
-            console.log("Number of Characters: ", text.length);
-            console.log('Extracted Text:', text);
+            const response = await fetch('/api/enhance-resume/generate-suggestions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({text}),
+            })
+
+            if(!response.ok){
+                throw new Error("Failed to fetch suggestion from route");
+            }
+
+            const result = await response.json();
+            const suggestions = result.suggestions;
+            
+            console.log("Generated Suggestions: ", suggestions);
+
         } catch (error) {
             console.error('Error extracting text:', error);
         }
