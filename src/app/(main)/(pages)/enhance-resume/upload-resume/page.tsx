@@ -1,18 +1,23 @@
-"use client";
+"use client"
+
 import ShiningText from '@/components/loading/shining-text';
+import { useResumeStore } from '@/store/resume-store';
 import { CloudUpload } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import PDFToText from 'react-pdftotext';
 
 const UploadResume: React.FC = () => {
-    const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
+    const setResumeFile = useResumeStore((state) => state.setResumeFile);
+    const setResumeSuggestions = useResumeStore((state) => state.setResumeSuggestions);
+    const router = useRouter();
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
         setResumeFile(file);
-        extractText(file);
+        generateSuggestions(file);
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -20,7 +25,7 @@ const UploadResume: React.FC = () => {
         onDrop
     });
 
-    const extractText = async (file: File | Blob) => {
+    const generateSuggestions = async (file: File | Blob) => {
         setLoading(true);
         try {
             const text = await PDFToText(file);
@@ -39,8 +44,11 @@ const UploadResume: React.FC = () => {
 
             const result = await response.json();
             const suggestions = result.suggestions;
+            setResumeSuggestions(suggestions);
 
             console.log("Generated Suggestions Succesfully.");
+
+            router.push('/enhance-resume');
 
         } catch (error) {
             console.error('Error extracting text:', error);
