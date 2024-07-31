@@ -52,8 +52,6 @@ const UploadResume: React.FC = () => {
 
         } catch (error) {
             console.error('Error extracting text:', error);
-        } finally{
-            setLoading(false);
         }
     };
 
