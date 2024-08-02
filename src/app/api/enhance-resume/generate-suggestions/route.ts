@@ -26,8 +26,7 @@ export async function POST(req: NextRequest) {
         Resume content:
         ${text}
 
-        Please provide your suggestions in a clear and structured format, addressing each point above.
-    `
+        Please provide your suggestions in a clear and structured format, addressing each point above.`
 
         const result = await model.generateContent(prompt);
         const response = await result.response;

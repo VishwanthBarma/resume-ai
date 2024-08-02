@@ -1,49 +1,93 @@
 'use client'
-import React from 'react';
-import { Viewer, Worker, SpecialZoomLevel } from '@react-pdf-viewer/core';
-import { toolbarPlugin, ToolbarSlot, TransformToolbarSlot } from '@react-pdf-viewer/toolbar';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import '@react-pdf-viewer/toolbar/lib/styles/index.css';
+import React, { useState } from 'react'
+import "react-pdf/dist/Page/AnnotationLayer.css"
+import "react-pdf/dist/Page/TextLayer.css"
 
-interface PdfViewerProps {
-  fileUrl: string;
+import {Document, Page, pdfjs} from 'react-pdf';
+import { useResumeStore } from '@/store/resume-store';
+import { ZoomIn, ZoomOut } from 'lucide-react';
+
+type Props = {
+  resumeFile: File | null;
 }
 
-const CustomToolbar: React.FC<{ toolbarPluginInstance: ReturnType<typeof toolbarPlugin> }> = ({ toolbarPluginInstance }) => {
-  const { renderDefaultToolbar, Toolbar } = toolbarPluginInstance;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-  const transform: TransformToolbarSlot = (slot: ToolbarSlot) => ({
-    ...slot,
-    Download: () => <></>,
-    EnterFullScreen: () => <></>,
-    SwitchTheme: () => <></>,
-    Open: () => <></>,
-    Print: () => <></>,
-  });
+const PdfViewer = ({ resumeFile }: Props) => {
 
-  return (
-    <Toolbar>{renderDefaultToolbar(transform)}</Toolbar>
-  );
-};
+  const [numPages, setNumPages] = useState<number>();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [scale, setScale] = useState<number>(1);
 
-const PdfViewer: React.FC<PdfViewerProps> = ({ fileUrl }) => {
-  const toolbarPluginInstance = toolbarPlugin();  
+  const onDocumentLoadSuccess = ({numPages}: {numPages: number}): void => {
+    setNumPages(numPages); 
+  }
 
-  return (
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
-      <div className="w-full h-[800px] rounded-lg bg-gray-100">
-        <CustomToolbar toolbarPluginInstance={toolbarPluginInstance} />
-        <div className="w-full h-full">
-          <Viewer
-            fileUrl={fileUrl}
-            defaultScale={SpecialZoomLevel.PageFit}
-            plugins={[toolbarPluginInstance]}
-          />
+  return ( 
+    <div className='flex flex-col items-center gap-4'>
+      <div className='flex items-center md:text-sm text-xs w-full justify-center md:gap-4 gap-1'>
+        <button
+        className='bg-neutral-800 p-2 md:px-3 disabled:text-neutral-600 rounded-lg'
+        disabled={pageNumber === 1}
+        onClick={() => {
+          if(pageNumber > 1){
+            setPageNumber(pageNumber - 1);
+          }
+        }}
+        >
+          Prev
+        </button>
+
+        <p className='p-2 border-2 rounded-lg cursor-default'>
+          {pageNumber} of {numPages}
+        </p>
+
+        <button
+        className='bg-neutral-800 p-2 md:px-3 disabled:text-neutral-600 rounded-lg'
+        disabled={pageNumber === numPages}
+        onClick={() => {
+          if(numPages){
+            setPageNumber(pageNumber + 1);
+          }
+        }}
+        >
+          Next
+        </button>
+
+        <button
+        className='bg-neutral-800 p-2 md:px-3 disabled:text-neutral-600 rounded-lg'
+        disabled={scale >= 1.5}
+        onClick={() => {
+          setScale(scale * 1.2);
+        }}
+        >
+          <ZoomIn className='h-5'/>
+        </button>
+
+        <button
+        className='bg-neutral-800 p-2 md:px-3 disabled:text-neutral-600 rounded-lg'
+        disabled={scale <= 0.75}
+        onClick={() => {
+          setScale(scale / 1.2);
+        }}
+        >
+          <ZoomOut className='h-5'/>
+        </button>
+      </div>
+
+      <div className='w-full max-h-[750px] flex justify-center'>
+        <div className='overflow-scroll rounded-lg shadow-lg shadow-gray-500'>
+          <Document
+            loading={null}
+            file={resumeFile}
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
+            <Page scale={scale} pageNumber={pageNumber}/>
+          </Document>
         </div>
       </div>
-    </Worker>
-  );
-};
+    </div>
+  )
+}
 
-export default PdfViewer;
+export default PdfViewer
