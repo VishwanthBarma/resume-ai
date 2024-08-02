@@ -5,10 +5,44 @@ import React from 'react'
 
 type Props = {}
 
+type Suggestion = {
+    heading: string;
+    description: string;
+}
+
 const EnhanceResume = () => {
     const resumeFile = useResumeStore((state) => state.resumeFile);
     const resumeSuggestions = useResumeStore((state) => state.resumeSuggestions);
 
+    const parseSuggestions = (jsonText: string): Suggestion[] => {
+        try {
+            if (typeof jsonText !== 'string') {
+                console.error("Invalid type for resumeSuggestions");
+                return [];
+            }
+    
+            const cleanedText = jsonText.replace(/```json|```/g, '').trim();
+    
+            const parsed = JSON.parse(cleanedText);
+    
+            if (parsed && Array.isArray(parsed.suggestions)) {
+                return parsed.suggestions.map((item: { heading: string; description: string }) => ({
+                    heading: item.heading,
+                    description: item.description
+                }));
+            } else {
+                console.warn("Parsed data does not have the expected 'suggestions' key or it is not an array.");
+                return [];
+            }
+        } catch (error) {
+            console.error("Failed to parse suggestions", error);
+            return [];
+        }
+    };
+    
+    const suggestions = parseSuggestions(resumeSuggestions);
+
+    // console.log("Parsed Suggestions: ", suggestions);
 
   return (
     <div className='h-full flex gap-3 py-3 px-5 pb-5'>

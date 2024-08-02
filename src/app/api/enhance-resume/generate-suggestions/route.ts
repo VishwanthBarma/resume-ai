@@ -13,21 +13,35 @@ export async function POST(req: NextRequest) {
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-        const prompt = `
-        Review the following resume content and provide detailed suggestions for improvement with a focus on increasing ATS (Applicant Tracking System) compliance:
+        const prompt = `Review the following resume content and provide concise, actionable suggestions for improvement with a focus on increasing ATS (Applicant Tracking System) compliance. Keep each suggestion brief and avoid exceeding a total of 500 words.
 
-        1. **Avoid Repetition**: Identify and suggest alternatives for repeated words and phrases.
-        2. **Spelling and Grammar**: Check for and suggest corrections for any spelling or grammatical errors.
-        3. **Quantify Impact**: Improve the experience section by adding specific, quantifiable achievements and examples. 
-        4. **Formatting and Keywords**: Ensure proper formatting and include relevant keywords that align with the job description.
-        5. **Content Relevance**: Verify that the content is relevant, includes a distinct skills section, and follows conventional headings like "Work Experience" and "Education".
-        6. **Section-Specific Feedback**: Provide specific suggestions for each section of the resume, including Contact Information, Summary/Objective, Work Experience, Education, Skills, and any Certifications or Achievements. Ensure that each section is correctly formatted, complete, and relevant to the job description.
-
+        1. **Avoid Repetition**: Identify repeated words or phrases and suggest alternatives.
+        2. **Spelling and Grammar**: Point out any spelling or grammatical errors and provide corrections.
+        3. **Quantify Impact**: Add specific, quantifiable achievements to the experience section.
+        4. **Formatting and Keywords**: Ensure proper formatting and include relevant keywords from the job description.
+        5. **Content Relevance**: Verify that the content is relevant and organized with distinct sections.
+        6. **Section-Specific Feedback**: Provide brief suggestions for each resume section, including Contact Information, Summary/Objective, Work Experience, Education, Skills, and Certifications or Achievements.
+        
         Resume content:
         ${text}
+        
+        Please provide your suggestions in a clear and structured format, addressing each point above in a maximum of 700 words.
+        The output format should be: for every suggestion, give heading and its description, that's it dont give anything else, like:
+        {
+            suggestions: [
+                {
+                    heading: [suggestion heading],
+                    description: [suggestion description]
+                }, {
+                    heading: [suggestion heading],
+                    description: [suggestion description]
+                }
+            ]
+        }
 
-        Please provide your suggestions in a clear and structured format, addressing each point above.`
-
+        give me the output in such a way that, i can directly parse it into json.
+        `
+        
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const generatedText = await response.text();
