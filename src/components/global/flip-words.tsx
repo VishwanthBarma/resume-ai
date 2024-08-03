@@ -32,9 +32,9 @@ export const FlipWords = ({
 
   const getTextGradient = (word: string) => {
     switch (word) {
-      case "Generate":
-        return "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)";
       case "Enhance":
+        return "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)";
+      case "Generate":
         return "linear-gradient(160deg, #FBDA61 0%, #FF5ACD 100%)";
       default:
         return "linear-gradient(160deg, #000 0%, #000 100%)"; // Default gradient

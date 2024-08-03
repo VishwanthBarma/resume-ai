@@ -99,7 +99,7 @@ const Template1 = () => {
 
 
   return (
-    <div className='flex gap-10 h-full p-6 px-20'>
+    <div className='flex gap-10 h-full p-6 px-14'>
       <div className='flex-1 flex flex-col gap-4'>
         <h1 className='text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-500'>Generate Resume</h1>
 

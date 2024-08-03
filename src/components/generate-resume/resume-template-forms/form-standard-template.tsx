@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects } from '@/lib/types'
+import FormStepIndicator from '../form-step-indicator';
 
 
 interface FormStandardTemplateProps {
@@ -10,7 +11,17 @@ interface FormStandardTemplateProps {
     setProjects: React.Dispatch<React.SetStateAction<Projects>>;
     setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
     setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
-  }
+}
+
+const steps = [
+    'Basic Details',
+    'Education',
+    'Technical Experience',
+    'Skills',
+    'Projects',
+    'Certificates',
+    'Achievements',
+];
   
 
 const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
@@ -22,9 +33,34 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     setCertificates,
     setAchievements}
 ) => {
+
+    const [currentStep, setCurrentStep] = useState(0);
+
+    const handleNext = () => {
+      if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+    };
+  
+    const handlePrev = () => {
+      if (currentStep > 0) setCurrentStep(currentStep - 1);
+    };
+  
+    const handleStepClick = (index: number) => {
+      setCurrentStep(index);
+    };
+
     return (
-        <div>
-            FormStandardTemplate
+        <div className='flex flex-col gap-4'>
+            <div>
+                <FormStepIndicator 
+                    currentStep={currentStep}
+                    steps={steps}
+                    onStepClick={handleStepClick}
+                />
+            </div>
+            <div>
+                {/* Form */}
+                FormStandardTemplate
+            </div>
         </div>
     )
 }

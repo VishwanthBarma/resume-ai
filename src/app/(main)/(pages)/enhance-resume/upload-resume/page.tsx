@@ -59,7 +59,7 @@ const UploadResume: React.FC = () => {
     return (
         <div className='flex justify-evenly items-center'>
             <div className='flex flex-col items-center'>
-                <h1 className='text-4xl font-semibold mb-3'>Upload Your Resume</h1>
+                <h1 className='text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-teal-500'>Upload Your Resume</h1>
                 <p className='font-bold text-slate-700 mb-12'>Note: We are not storing your resume in any database.</p>
 
                 {
@@ -67,7 +67,7 @@ const UploadResume: React.FC = () => {
                     <>
                     <div
                         {...getRootProps()}
-                        className={`px-10 flex flex-col items-center py-14 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-pink-500' : 'border-gray-300'} rounded-lg`}
+                        className={`px-10 flex flex-col items-center py-14 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
                     >
                         <input {...getInputProps()} />
                         <CloudUpload className='h-12 w-12 mb-2'/>
