@@ -25,10 +25,12 @@ export default function Home() {
           titleComponent={
             <>
               <div className="flex items-center justify-center gap-5 my-10 mt-40 mb-8">
-                <Button 
-                  className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
-                  <Brain className="h-5 w-5 mr-[-8px]" /> Generate Resume
-                </Button>
+                <Link href={"/generate-resume"}>
+                  <Button 
+                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
+                    <Brain className="h-5 w-5 mr-[-8px]" /> Generate Resume
+                  </Button>
+                </Link>
                 <Link href={"/enhance-resume/upload-resume"}>
                   <Button
                     className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
