@@ -1,5 +1,6 @@
 "use client"
 
+import Resume3DCard from '@/components/global/resume-3d-card';
 import ShiningText from '@/components/loading/shining-text';
 import { useResumeStore } from '@/store/resume-store';
 import { CloudUpload } from 'lucide-react';
@@ -56,28 +57,32 @@ const UploadResume: React.FC = () => {
     };
 
     return (
-        <div className='flex flex-col items-center mt-32'>
-            <h1 className='text-4xl font-semibold mb-3'>Upload Your Resume</h1>
-            <p className='font-bold text-slate-700 mb-12'>Note: We are not storing your resume in any database.</p>
+        <div className='flex justify-evenly items-center'>
+            <div className='flex flex-col items-center'>
+                <h1 className='text-4xl font-semibold mb-3'>Upload Your Resume</h1>
+                <p className='font-bold text-slate-700 mb-12'>Note: We are not storing your resume in any database.</p>
 
-            {
-                !loading ?
-                <>
-                <div
-                    {...getRootProps()}
-                    className={`px-10 flex flex-col items-center py-14 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-pink-500' : 'border-gray-300'} rounded-lg`}
-                >
-                    <input {...getInputProps()} />
-                    <CloudUpload className='h-12 w-12 mb-2'/>
-                    <p>Drop your resume here or choose a file.</p>
-                </div>
-                </>
-                :
-                <>
-                <ShiningText />
-                </>
-            }
-
+                {
+                    !loading ?
+                    <>
+                    <div
+                        {...getRootProps()}
+                        className={`px-10 flex flex-col items-center py-14 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-pink-500' : 'border-gray-300'} rounded-lg`}
+                    >
+                        <input {...getInputProps()} />
+                        <CloudUpload className='h-12 w-12 mb-2'/>
+                        <p>Drop your resume here or choose a file.</p>
+                    </div>
+                    </>
+                    :
+                    <>
+                    <ShiningText />
+                    </>
+                }
+            </div>
+            <div className='animate-pulse'>
+                <Resume3DCard />
+            </div>
         </div>
     );
 };

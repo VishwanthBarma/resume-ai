@@ -64,6 +64,8 @@ const EnhanceResume = () => {
             )}
         </div>
 
+        {/* TODO: Chat with your resume */}
+
         {/* PDF Viewer */}
         <div className='w-2/4 xl:w-2/5'>
             {
