@@ -1,5 +1,5 @@
 'use client'
-import FormStandardTemplate from '@/components/generate-resume/resume-template-forms/form-standard-template'
+import FormStandardTemplate from '@/components/generate-resume/resume-template-forms/standard-template/form-standard-template'
 import React, { useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects } from '@/lib/types'
 

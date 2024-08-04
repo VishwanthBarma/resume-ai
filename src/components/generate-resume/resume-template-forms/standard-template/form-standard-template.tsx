@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects } from '@/lib/types'
 import FormStepIndicator from '../form-step-indicator';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
+import FormTechnicalExperience from '../form-technical-experience';
+import FormProjects from '../form-projects';
 
 
 interface FormStandardTemplateProps {
@@ -265,6 +267,50 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                     </>
                 }
 
+                
+                {/* TechnialExperience */}
+                {
+                    currentStep === 3 && 
+                    <>
+                    <FormTechnicalExperience />
+                    </>
+                }
+
+
+                {/* Skills */}
+                {
+                    currentStep === 4 &&
+                    <>
+
+                    </>
+                }
+
+
+                {/* Projects */}
+                {
+                    currentStep === 5 &&
+                    <>
+                    <FormProjects />
+                    </>
+                }
+
+
+                {/* Certificates */}
+                {
+                    currentStep === 6 &&
+                    <>
+                    
+                    </>
+                }
+
+
+                {/* Achievements */}
+                {
+                    currentStep === 7 && 
+                    <>
+                    
+                    </>
+                }
 
 
                 {/* Pagination Buttons */}
