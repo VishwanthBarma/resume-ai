@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects } from '@/lib/types'
+import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects, Skills } from '@/lib/types'
 import FormStepIndicator from '../form-step-indicator';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 import FormTechnicalExperience from '../form-technical-experience';
 import FormProjects from '../form-projects';
+import FormSkills from '../form-skills';
 
 
 interface FormStandardTemplateProps {
     setBasicDetails: React.Dispatch<React.SetStateAction<BasicDetails>>;
     setEducation: React.Dispatch<React.SetStateAction<Education>>;
     setTechnicalExperience: React.Dispatch<React.SetStateAction<TechnicalExperience>>;
-    setSkills: React.Dispatch<React.SetStateAction<string[]>>;
+    setSkills: React.Dispatch<React.SetStateAction<Skills>>;
     setProjects: React.Dispatch<React.SetStateAction<Projects>>;
     setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
     setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
@@ -38,6 +39,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [latestStep, setLatestStep] = useState(1);
+    const [skills, setSkillsState] = useState<string[]>([]);
 
     const handleNext = () => {
       if (currentStep < steps.length){
@@ -78,8 +80,10 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
         }));
     };
 
-    
-    
+    const handleSkillsChange = (newSkills: string[]) => {
+        setSkillsState(newSkills);
+        setSkills(newSkills);
+    };
 
     return (
         <div className='flex flex-col gap-4 h-full'>
@@ -281,7 +285,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 4 &&
                     <>
-
+                    <FormSkills skills={skills} onSkillsChange={handleSkillsChange} />
                     </>
                 }
 

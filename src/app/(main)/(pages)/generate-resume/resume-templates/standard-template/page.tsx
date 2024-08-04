@@ -1,7 +1,7 @@
 'use client'
 import FormStandardTemplate from '@/components/generate-resume/resume-template-forms/standard-template/form-standard-template'
 import React, { useState } from 'react'
-import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects } from '@/lib/types'
+import { BasicDetails, Education, TechnicalExperience, Skills, Certificates, Achievements, Projects } from '@/lib/types'
 
 type Props = {}
 
@@ -53,7 +53,7 @@ const StandardTemplate = () => {
     }
   })
 
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skills, setSkills] = useState<Skills>([]);
 
   const [projects, setProjects] = useState<Projects>({
     project1: {

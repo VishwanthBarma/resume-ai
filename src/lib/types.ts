@@ -8,6 +8,8 @@ export interface BasicDetails {
     github: string;
     linkedIn: string;
   }
+
+  export type Skills = string[];
   
   export interface Education {
     college: {
