@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects, Skills } from '@/lib/types'
-import FormStepIndicator from '../form-step-indicator';
+import FormStepIndicator from '../../form-step-indicator';
 import { ChevronLeft, ChevronRight, CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import FormTechnicalExperience from '../form-technical-experience';
-import FormProjects from '../form-projects';
-import FormSkills from '../form-skills';
+import FormTechnicalExperience from './forms/form-technical-experience';
+import FormProjects from './forms/form-projects';
+import FormSkills from './forms/form-skills';
 
 
 interface FormStandardTemplateProps {
@@ -15,8 +15,13 @@ interface FormStandardTemplateProps {
     setProjects: React.Dispatch<React.SetStateAction<Projects>>;
     setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
     setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
+    basicDetails: BasicDetails;
+    education: Education;
     technicalExperience: TechnicalExperience;
+    skills: Skills;
     projects: Projects;
+    certificates: Certificates;
+    achievements: Achievements;
 }
 
 const steps = [
@@ -37,13 +42,18 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     setProjects,
     setCertificates,
     setAchievements,
+    basicDetails,
+    education,
     technicalExperience,
-    projects,}
+    skills,
+    projects,
+    achievements,
+    certificates,}
 ) => {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [latestStep, setLatestStep] = useState(1);
-    const [skills, setSkillsState] = useState<string[]>([]);
+    const [skillsState, setSkillsState] = useState<string[]>([]);
 
     const scrollableContainerRef = useRef<HTMLDivElement>(null);
 
@@ -140,20 +150,23 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 Your Name :  
                                 <input 
+                                value={basicDetails.name}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'name')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 Phone Number :  
-                                <input 
+                                <input
+                                value={basicDetails.phone}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'phone')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 City :  
-                                <input 
+                                <input
+                                value={basicDetails.city}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'city')}
                                 />
@@ -161,6 +174,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 State :  
                                 <input 
+                                value={basicDetails.state}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'state')}
                                 />
@@ -168,6 +182,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 Email :  
                                 <input 
+                                value={basicDetails.gmail}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'gmail')}
                                 />
@@ -175,6 +190,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 GitHub Link :  
                                 <input 
+                                value={basicDetails.github}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'github')}
                                 />
@@ -182,6 +198,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 LinkedIn Link :  
                                 <input 
+                                value={basicDetails.linkedIn}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                 onChange={(e) => handleBasicDetailsInput(e, 'linkedIn')}
                                 />
@@ -204,13 +221,15 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Name :  
                                     <input 
+                                    value={education.college.name}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'college', 'name')}
                                     />
                                     </label>
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Course :  
-                                    <input 
+                                    <input
+                                    value={education.college.course}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'college', 'course')}
                                     />
@@ -218,6 +237,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Score :  
                                     <input 
+                                    value={education.college.score}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'college', 'score')}
                                     />
@@ -225,6 +245,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Duration :  
                                     <input 
+                                    value={education.college.duration}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'college', 'duration')}
                                     />
@@ -236,6 +257,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Name :  
                                     <input 
+                                    value={education.highschool.name}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'highschool', 'name')}
                                     />
@@ -243,6 +265,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Course :  
                                     <input 
+                                    value={education.highschool.course}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'highschool', 'course')}
                                     />
@@ -250,6 +273,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Score :  
                                     <input 
+                                    value={education.highschool.score}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'highschool', 'score')}
                                     />
@@ -257,6 +281,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Duration :  
                                     <input 
+                                    value={education.highschool.duration}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'highschool', 'duration')}
                                     />
@@ -268,6 +293,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Name :  
                                     <input 
+                                    value={education.school.name}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'school', 'name')}
                                     />
@@ -275,6 +301,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Course :  
                                     <input 
+                                    value={education.school.course}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'school', 'course')}
                                     />
@@ -282,6 +309,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Score :  
                                     <input 
+                                    value={education.school.score}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'school', 'score')}
                                     />
@@ -289,6 +317,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                     <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
                                     Duration :  
                                     <input 
+                                    value={education.school.duration}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                     onChange={(e) => handleEducationInput(e, 'school', 'duration')}
                                     />
@@ -319,7 +348,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 4 &&
                     <>
-                    <FormSkills skills={skills} onSkillsChange={handleSkillsChange} />
+                    <FormSkills skills={skillsState} onSkillsChange={handleSkillsChange} />
                     </>
                 }
 
@@ -347,6 +376,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                         <label className='flex items-center justify-evenly text-slate-200'>
                             Certificate 1 :
                             <input
+                            value={certificates.certificate1}
                             type='text'
                             onChange={(e) => handleCertificatesChange(e, 'certificate1')}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0'
@@ -355,6 +385,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                         <label className='flex items-center justify-evenly text-slate-200'>
                             Certificate 2 :
                             <input
+                            value={certificates.certificate2}
                             type='text'
                             onChange={(e) => handleCertificatesChange(e, 'certificate2')}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0'
@@ -377,6 +408,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                         <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 1:
                             <input
+                            value={achievements.achievement1}
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement1')}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
@@ -385,6 +417,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                         <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 2:
                             <input
+                            value={achievements.achievement2}
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement2')}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
@@ -393,6 +426,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                         <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 3:
                             <input
+                            value={achievements.achievement3}
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement3')}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'

@@ -116,8 +116,13 @@ const StandardTemplate = () => {
           setProjects={setProjects}
           setCertificates={setCertificates}
           setAchievements={setAchievements}
+          basicDetails={basicDetails}
+          education={education}
           technicalExperience={technicalExperience}
+          skills={skills}
           projects={projects}
+          certificates={certificates}
+          achievements={achievements}
           />
         </div>
         
@@ -147,7 +152,7 @@ const StandardTemplate = () => {
 
           {/* Education */}
           <div className='flex text-[8px] flex-col'>
-            <h1 className='text-sm text-teal-800 border-b-[1px] border-neutral-300 w-full'>Education</h1>
+            <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Education</h1>
             <div className='flex flex-col'>
               <div className='flex justify-between'>
                 <h1><span className='font-semibold'>{education.college.course}</span>, {education.college.name}</h1>
@@ -165,8 +170,11 @@ const StandardTemplate = () => {
           </div>
 
           {/* Technical Experience */}
-          <div>
-
+          <div className='flex text-[8px] flex-col'>
+            <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Technical Experience</h1>
+            <div className='flex flex-col'>
+              
+            </div>
           </div>
 
           {/* Skills */}

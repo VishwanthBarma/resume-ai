@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TechnicalExperience } from '@/lib/types';
 import { ArrowLeft, ArrowRight, Brain, CirclePlus, FilePenLine, Loader } from 'lucide-react';
+import { text } from 'body-parser';
+import GenerateAIDescriptionCard from '@/components/generate-resume/generate-ai-description-card';
 
 interface Props {
   technicalExperience: TechnicalExperience;
@@ -70,11 +72,11 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
     }
 
-    const saveDescription = (section: keyof TechnicalExperience) => {
+    const saveDescription = (section: string) => {
         setTechnicalExperience(prev => ({
             ...prev,
-            [section]: {
-                ...prev[section],
+            [section as keyof TechnicalExperience]: {
+                ...prev[section as keyof TechnicalExperience],
                 "description": generatedDesc,
             }
         }));
@@ -103,6 +105,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Company Name :  
                                         <input 
+                                        value={technicalExperience.experience1.companyName}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience1', 'companyName')}
                                         />
@@ -110,6 +113,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Role :  
                                         <input 
+                                        value={technicalExperience.experience1.role}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience1', 'role')}
                                         />
@@ -117,47 +121,21 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Duration :  
                                         <input
+                                        value={technicalExperience.experience1.duration}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience1', 'duration')}
                                         />
                                     </label>
-                                    <div className='mt-5 border-2 border-dotted p-3 rounded-xl'>
-                                        <h1 className='font-bold'>AI Suggestion</h1>
-                                        <textarea 
-                                        value={userDescription}
-                                        className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-full mt-3 min-h-40'
-                                        onChange={(e) => setUserDescription(e.target.value)}
-                                        placeholder='Provide more details about your role in the company'
-                                        />
-
-                                        <div className='flex gap-5'>
-                                            <button
-                                            disabled={userDescription === ''}
-                                            onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
-                                                {
-                                                    loading ? 
-                                                    <Loader className='h-5 w-5 animate-spin'/>
-                                                    :
-                                                    <Brain className='h-5 w-5'/>
-                                                }
-                                                {
-                                                    loading ? 
-                                                    <p className='font-bold ml-1'>Generating...</p>
-                                                    :
-                                                    <p className='font-bold ml-1'>Generate</p>
-                                                }
-                                            </button>
-
-                                            <button
-                                            disabled={generatedDesc === ''}
-                                            onClick={() => saveDescription('experience1')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
-                                                <FilePenLine className='h-5 w-5'/>
-                                                <p className='ml-1'>Insert To Description</p>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    
+                                    <GenerateAIDescriptionCard
+                                    userDescription={userDescription}
+                                    setUserDescription={setUserDescription}
+                                    generateAIDescription={generateAIDescription}
+                                    loading={loading}
+                                    generatedDesc={generatedDesc}
+                                    saveDescription={saveDescription}
+                                    section='experience1'
+                                    />
 
                                     <div className='mt-8'>
                                         <h1>Description :</h1>
@@ -186,6 +164,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Company Name :  
                                         <input 
+                                        value={technicalExperience.experience2.companyName}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience2', 'companyName')}
                                         />
@@ -193,6 +172,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Role :  
                                         <input 
+                                        value={technicalExperience.experience2.role}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience2', 'role')}
                                         />
@@ -200,46 +180,21 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Duration :  
                                         <input 
+                                        value={technicalExperience.experience2.duration}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience2', 'duration')}
                                         />
                                     </label>
-                                    <div className='mt-5 border-2 border-dotted p-3 rounded-xl'>
-                                        <h1 className='font-bold'>AI Suggestion</h1>
-                                        <textarea 
-                                        className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-full mt-3 min-h-40'
-                                        onChange={(e) => setUserDescription(e.target.value)}
-                                        placeholder='Provide more details about your role in the company'
-                                        />
 
-                                        <div className='flex gap-5'>
-                                            <button
-                                            disabled={userDescription === ''}
-                                            onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
-                                                {
-                                                    loading ? 
-                                                    <Loader className='h-5 w-5 animate-spin'/>
-                                                    :
-                                                    <Brain className='h-5 w-5'/>
-                                                }
-                                                {
-                                                    loading ? 
-                                                    <p className='font-bold ml-1'>Generating...</p>
-                                                    :
-                                                    <p className='font-bold ml-1'>Generate</p>
-                                                }
-                                            </button>
-
-                                            <button
-                                            disabled={generatedDesc === ''}
-                                            onClick={() => saveDescription('experience2')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
-                                                <FilePenLine className='h-5 w-5'/>
-                                                <p className='ml-1'>Insert To Description</p>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <GenerateAIDescriptionCard
+                                    userDescription={userDescription}
+                                    setUserDescription={setUserDescription}
+                                    generateAIDescription={generateAIDescription}
+                                    loading={loading}
+                                    generatedDesc={generatedDesc}
+                                    saveDescription={saveDescription}
+                                    section='experience2'
+                                    />
 
                                     <div className='mt-8'>
                                         <h1>Description :</h1>
