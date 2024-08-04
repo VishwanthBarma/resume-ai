@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TechnicalExperience } from '@/lib/types';
-import { ArrowLeft, ArrowRight, Brain, CirclePlus, FilePenLine } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Brain, CirclePlus, FilePenLine, Loader } from 'lucide-react';
 
 interface Props {
   technicalExperience: TechnicalExperience;
@@ -9,9 +9,10 @@ interface Props {
 
 const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTechnicalExperience }) => {
 
-    const [userDescription, setUserDescription] = useState<String>("");
+    const [userDescription, setUserDescription] = useState<string>("");
     const [expNum, setExpNum] = useState(1);
-    const [generatedDesc, setGeneratedDesc] = useState<String>('');
+    const [generatedDesc, setGeneratedDesc] = useState<string>('');
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const handleTechnicalExperienceInput = (e: any, section: keyof TechnicalExperience, field: keyof TechnicalExperience[keyof TechnicalExperience]) => {
         setTechnicalExperience(prev => ({
@@ -23,8 +24,47 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
         }));
     }
 
-    const generateAIDescription = () => {
+    const generateAIDescription = async() => {
         // Implement generation of description
+        setLoading(true);
+
+        try{
+            let text = '';
+
+            if(expNum === 1){
+                text = `Company Name: ${technicalExperience.experience1.companyName},
+                Role: ${technicalExperience.experience1.role}
+                Description: ${userDescription}
+                `;
+            }else{
+                text = `Company Name: ${technicalExperience.experience2.companyName},
+                Role: ${technicalExperience.experience2.role}
+                Description: ${userDescription}
+                `;
+            }
+
+            const response = await fetch('/api/generate-resume/technical-experience-suggestion', {
+                method: 'POST',
+                body: JSON.stringify({text}),
+            })
+
+            if(!response.ok){
+                throw new Error("Failed to fetch Description Suggestions.")
+            }
+
+            const result = await response.json();
+            const suggestion = result.suggestion;
+            setGeneratedDesc(suggestion);
+            setUserDescription(suggestion);
+
+            console.log("Description Suggestion Successfull.")
+            console.log("New Desc: ", suggestion);
+
+        }catch(error){
+            console.log("Error in fetching the AI generated description.");
+        }finally{
+            setLoading(false);
+        }
 
     }
 
@@ -35,7 +75,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                 ...prev[section],
                 "description": generatedDesc,
             }
-        }))
+        }));
+
+        setUserDescription('');
     }
 
     const changeExperience = () => {
@@ -79,6 +121,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     <div className='mt-5 border-2 border-dotted p-3 rounded-xl'>
                                         <h1 className='font-bold'>AI Suggestion</h1>
                                         <textarea 
+                                        value={userDescription}
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-full mt-3 min-h-40'
                                         onChange={(e) => setUserDescription(e.target.value)}
                                         placeholder='Provide more details about your role in the company'
@@ -87,16 +130,26 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                         <div className='flex gap-5'>
                                             <button
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2'>
-                                                <Brain className='h-5 w-5'/>
-                                                <p className='font-bold ml-2'>Generate</p>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                                {
+                                                    loading ? 
+                                                    <Loader className='h-5 w-5 animate-spin'/>
+                                                    :
+                                                    <Brain className='h-5 w-5'/>
+                                                }
+                                                {
+                                                    loading ? 
+                                                    <p className='font-bold ml-1'>Generating...</p>
+                                                    :
+                                                    <p className='font-bold ml-1'>Generate</p>
+                                                }
                                             </button>
 
                                             <button
                                             onClick={() => saveDescription('experience1')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2'>
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
                                                 <FilePenLine className='h-5 w-5'/>
-                                                <p className=' ml-2'>Insert To Description</p>
+                                                <p className='ml-1'>Insert To Description</p>
                                             </button>
                                         </div>
                                     </div>
@@ -157,16 +210,26 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                         <div className='flex gap-5'>
                                             <button
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2'>
-                                                <Brain className='h-5 w-5'/>
-                                                <p className='font-bold ml-2'>Generate</p>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                                {
+                                                    loading ? 
+                                                    <Loader className='h-5 w-5 animate-spin'/>
+                                                    :
+                                                    <Brain className='h-5 w-5'/>
+                                                }
+                                                {
+                                                    loading ? 
+                                                    <p className='font-bold ml-1'>Generating...</p>
+                                                    :
+                                                    <p className='font-bold ml-1'>Generate</p>
+                                                }
                                             </button>
 
                                             <button
                                             onClick={() => saveDescription('experience2')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2'>
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
                                                 <FilePenLine className='h-5 w-5'/>
-                                                <p className=' ml-2'>Insert To Description</p>
+                                                <p className='ml-1'>Insert To Description</p>
                                             </button>
                                         </div>
                                     </div>
@@ -192,7 +255,6 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                             </>
 
                         }
-
 
                     </div>
         </div>
