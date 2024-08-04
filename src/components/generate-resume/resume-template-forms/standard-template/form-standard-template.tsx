@@ -85,6 +85,13 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
         setSkills(newSkills);
     };
 
+    const handleCertificatesChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Certificates) => {
+        setCertificates(prev => ({
+            ...prev,
+            [field]: e.target.value,
+        }));
+      };
+
     return (
         <div className='flex flex-col gap-4 h-full'>
 
@@ -303,7 +310,28 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 6 &&
                     <>
-                    
+                    <div className='flex flex-col gap-4'>
+                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Certificates</h1>
+                        <div className='flex flex-col gap-2 px-10'>
+                        <label className='flex items-center justify-evenly text-slate-200'>
+                            Certificate 1 :
+                            <input
+                            type='text'
+                            onChange={(e) => handleCertificatesChange(e, 'certificate1')}
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            />
+                        </label>
+                        <label className='flex items-center justify-evenly text-slate-200'>
+                            Certificate 2 :
+                            <input
+                            type='text'
+                            onChange={(e) => handleCertificatesChange(e, 'certificate2')}
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            />
+                        </label>
+                        </div>
+                    </div>
+
                     </>
                 }
 
