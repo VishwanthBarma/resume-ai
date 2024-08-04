@@ -23,7 +23,6 @@ const steps = [
     'Certificates',
     'Achievements',
 ];
-  
 
 const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     setBasicDetails,
@@ -58,16 +57,30 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
       setCurrentStep(index);
     };
 
+
+    // Form Section Handlers
     const handleBasicDetailsInput = (e: React.ChangeEvent<HTMLInputElement>, field: keyof BasicDetails) => {
         setBasicDetails(prev => ({
           ...prev,
           [field]: e.target.value,
         }));
-      };
+    };
+
+    const handleEducationInput = (e: React.ChangeEvent<HTMLInputElement>, section: keyof Education, field: keyof Education[keyof Education]) => {
+        setEducation(prev => ({
+          ...prev,
+          [section]:{
+            ...prev[section],
+            [field]: e.target.value,
+          } 
+        }));
+    };
+
+    
     
 
     return (
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 h-full'>
 
             <div className='mb-5'>
                 <FormStepIndicator 
@@ -79,7 +92,8 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
             </div>
 
             {/* MultiStep Form */}
-            <div className='overflow-hidden overflow-y-scroll'>
+            <div className='overflow-hidden overflow-y-scroll h-[700px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
+
                 {/* BasicDetails */}
                 {
                     currentStep === 1 && 
@@ -98,42 +112,42 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                 Phone Number :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'phone')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 City :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'city')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 State :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'state')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 Email :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'gmail')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 GitHub Link :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'github')}
                                 />
                             </label>
                             <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                 LinkedIn Link :  
                                 <input 
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                onChange={(e) => handleBasicDetailsInput(e, 'name')}
+                                onChange={(e) => handleBasicDetailsInput(e, 'linkedIn')}
                                 />
                             </label>
                         </div>
@@ -141,7 +155,121 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                     </>
                 }
 
-                <div className='my-10 flex gap-10 justify-center'>
+
+                {/* Education */}
+                {
+                    currentStep === 2 && 
+                    <>
+                    <div className='flex flex-col gap-4'>
+                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Education Details</h1>
+                        <div className='flex flex-col gap-12 px-10'>
+                            <div className='flex flex-col'>
+                                <h1 className='text-xl'>College</h1>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Name :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'college', 'name')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Course :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'college', 'course')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Score :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'college', 'score')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Duration :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'college', 'duration')}
+                                    />
+                                    </label>
+                            </div>
+
+                            <div className='flex flex-col'>
+                                <h1 className='text-xl'>High School</h1>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Name :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'highschool', 'name')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Course :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'highschool', 'course')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Score :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'highschool', 'score')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Duration :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'highschool', 'duration')}
+                                    />
+                                    </label>
+                            </div>
+
+                            <div className='flex flex-col'>
+                                <h1 className='text-xl'>School</h1>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Name :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'school', 'name')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Course :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'school', 'course')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Score :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'school', 'score')}
+                                    />
+                                    </label>
+                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                    Duration :  
+                                    <input 
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    onChange={(e) => handleEducationInput(e, 'school', 'duration')}
+                                    />
+                                    </label>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                    </>
+                }
+
+
+
+                {/* Pagination Buttons */}
+
+                <div className='mt-10 pb-20 flex gap-10 justify-center'>
                     <button
                     disabled={currentStep === 1}
                     onClick={handlePrev}

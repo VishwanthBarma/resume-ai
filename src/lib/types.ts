@@ -24,6 +24,7 @@ export interface BasicDetails {
     };
     school: {
       name: string;
+      course: string;
       score: string;
       duration: string;
     };
