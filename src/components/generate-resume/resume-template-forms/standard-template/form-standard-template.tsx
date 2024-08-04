@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects, Skills } from '@/lib/types'
 import FormStepIndicator from '../form-step-indicator';
-import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 import FormTechnicalExperience from '../form-technical-experience';
 import FormProjects from '../form-projects';
 import FormSkills from '../form-skills';
@@ -410,21 +410,27 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                     <button
                     disabled={currentStep === 1}
                     onClick={handlePrev}
-                    className={`border-neutral-700 bg-neutral-900 border-2 p-3 rounded-lg ${currentStep === 1 ? 
+                    className={`border-neutral-800 bg-neutral-900 border-2 p-3 px-6 rounded-lg ${currentStep === 1 ? 
                         "opacity-50 cursor-not-allowed" :
-                        "hover:bg-neutral-800"} `
+                        "hover:bg-neutral-800"} 
+                        flex items-center
+                        `
                         }>
-                        <CircleArrowLeft className={`${currentStep === 1 && "text-gray-500"} h-7 w-7 text-pink-500`}/>
+                        <ChevronLeft className={`${currentStep === 1 && "text-gray-500"} h-6 w-6 text-pink-500`}/>
+                        <p className='font-semibold text-pink-500'>Back</p>
                     </button>
 
                     <button
                     disabled={currentStep >= (steps.length)}
                     onClick={handleNext}
-                    className={`border-neutral-700 bg-neutral-900 border-2 p-3 rounded-lg ${currentStep >= steps.length ? 
+                    className={`border-neutral-800 bg-neutral-900 border-2 p-3 px-6 rounded-lg ${currentStep >= steps.length ? 
                         "opacity-50 cursor-not-allowed" :
-                        "hover:bg-neutral-800"} `
+                        "hover:bg-neutral-800"} 
+                        flex items-center
+                        `
                         }>
-                        <CircleArrowRight className={`${currentStep >= (steps.length) && "text-gray-500"} h-7 w-7 text-pink-500`}/>
+                        <p className='font-semibold text-pink-500'>Next</p>
+                        <ChevronRight className={`${currentStep >= (steps.length) && "text-gray-500"} h-6 w-6 text-pink-500`}/>
                     </button>
                 </div>
 

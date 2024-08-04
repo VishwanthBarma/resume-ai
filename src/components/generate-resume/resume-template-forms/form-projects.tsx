@@ -70,7 +70,6 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
             setUserDescription(suggestion);
 
             console.log("Description Suggestion Successful.");
-            console.log("New Desc: ", suggestion);
 
         } catch (error) {
             console.log("Error in fetching the AI generated description.");
@@ -89,6 +88,7 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
         }));
 
         setUserDescription('');
+        setGeneratedDesc('');
     }
 
     const changeNextProject = () => {
@@ -155,8 +155,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
 
                                     <div className='flex gap-5'>
                                         <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             {
                                                 loading ? 
                                                 <Loader className='h-5 w-5 animate-spin'/>
@@ -172,8 +173,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
                                         </button>
 
                                         <button
+                                            disabled={generatedDesc === ''}
                                             onClick={() => saveDescription('project1')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             <FilePenLine className='h-5 w-5'/>
                                             <p className='ml-1'>Insert To Description</p>
                                         </button>
@@ -253,8 +255,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
 
                                     <div className='flex gap-5'>
                                         <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             {
                                                 loading ? 
                                                 <Loader className='h-5 w-5 animate-spin'/>
@@ -270,8 +273,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
                                         </button>
 
                                         <button
-                                            onClick={() => saveDescription('project2')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            disabled={generatedDesc === ''}
+                                            onClick={() => saveDescription('project1')}
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             <FilePenLine className='h-5 w-5'/>
                                             <p className='ml-1'>Insert To Description</p>
                                         </button>
@@ -351,8 +355,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
 
                                     <div className='flex gap-5'>
                                         <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             {
                                                 loading ? 
                                                 <Loader className='h-5 w-5 animate-spin'/>
@@ -368,8 +373,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
                                         </button>
 
                                         <button
-                                            onClick={() => saveDescription('project3')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            disabled={generatedDesc === ''}
+                                            onClick={() => saveDescription('project1')}
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             <FilePenLine className='h-5 w-5'/>
                                             <p className='ml-1'>Insert To Description</p>
                                         </button>
@@ -449,8 +455,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
 
                                     <div className='flex gap-5'>
                                         <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             {
                                                 loading ? 
                                                 <Loader className='h-5 w-5 animate-spin'/>
@@ -466,8 +473,9 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
                                         </button>
 
                                         <button
-                                            onClick={() => saveDescription('project4')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            disabled={generatedDesc === ''}
+                                            onClick={() => saveDescription('project1')}
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                             <FilePenLine className='h-5 w-5'/>
                                             <p className='ml-1'>Insert To Description</p>
                                         </button>

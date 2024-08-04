@@ -125,7 +125,9 @@ const StandardTemplate = () => {
 
       {/* Resume Viewer */}
       <div className='w-2/5 bg-gray-100 rounded-xl h-full overflow-hidden overflow-y-scroll'>
-          <h1 className='text-black'>{basicDetails.name}</h1>
+        <div>
+          {/* Render Standard Resume */}
+        </div>
       </div>
     </div>
   )

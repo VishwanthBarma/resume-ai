@@ -10,7 +10,7 @@ interface Props {
 
 const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTechnicalExperience, scrollToTop }) => {
 
-    const [userDescription, setUserDescription] = useState<string>("");
+    const [userDescription, setUserDescription] = useState<string>('');
     const [expNum, setExpNum] = useState(1);
     const [generatedDesc, setGeneratedDesc] = useState<string>('');
     const [loading, setLoading] = useState<Boolean>(false);
@@ -27,6 +27,8 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
     const generateAIDescription = async() => {
         // Implement generation of description
+        if(userDescription === '') return;
+
         setLoading(true);
 
         try{
@@ -59,7 +61,6 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
             setUserDescription(suggestion);
 
             console.log("Description Suggestion Successfull.")
-            console.log("New Desc: ", suggestion);
 
         }catch(error){
             console.log("Error in fetching the AI generated description.");
@@ -79,6 +80,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
         }));
 
         setUserDescription('');
+        setGeneratedDesc('');
     }
 
     const changeExperience = () => {
@@ -114,7 +116,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                     </label>
                                     <label className='w-4/6 flex items-center justify-between text-slate-200'>
                                         Duration :  
-                                        <input 
+                                        <input
                                         className='bg-neutral-900 border-none rounded-lg focus:ring-0'
                                         onChange={(e) => handleTechnicalExperienceInput(e, 'experience1', 'duration')}
                                         />
@@ -130,8 +132,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
                                         <div className='flex gap-5'>
                                             <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                                 {
                                                     loading ? 
                                                     <Loader className='h-5 w-5 animate-spin'/>
@@ -147,8 +150,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                             </button>
 
                                             <button
+                                            disabled={generatedDesc === ''}
                                             onClick={() => saveDescription('experience1')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                                 <FilePenLine className='h-5 w-5'/>
                                                 <p className='ml-1'>Insert To Description</p>
                                             </button>
@@ -210,8 +214,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
                                         <div className='flex gap-5'>
                                             <button
+                                            disabled={userDescription === ''}
                                             onClick={generateAIDescription}
-                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-gradient-to-r from-pink-600 to-pink-500 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                                 {
                                                     loading ? 
                                                     <Loader className='h-5 w-5 animate-spin'/>
@@ -227,8 +232,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                                             </button>
 
                                             <button
+                                            disabled={generatedDesc === ''}
                                             onClick={() => saveDescription('experience2')}
-                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90'>
+                                            className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                                                 <FilePenLine className='h-5 w-5'/>
                                                 <p className='ml-1'>Insert To Description</p>
                                             </button>
