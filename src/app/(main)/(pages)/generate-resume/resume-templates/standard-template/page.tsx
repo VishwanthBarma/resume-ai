@@ -61,28 +61,28 @@ const StandardTemplate = () => {
       techstack: '',
       gitlink: '',
       year: '',
-      desc: '',
+      description: '',
     },
     project2: {
       name: '',
       techstack: '',
       gitlink: '',
       year: '',
-      desc: '',
+      description: '',
     },
     project3: {
       name: '',
       techstack: '',
       gitlink: '',
       year: '',
-      desc: '',
+      description: '',
     },
     project4: {
       name: '',
       techstack: '',
       gitlink: '',
       year: '',
-      desc: '',
+      description: '',
     }
   })
 
@@ -117,6 +117,7 @@ const StandardTemplate = () => {
           setCertificates={setCertificates}
           setAchievements={setAchievements}
           technicalExperience={technicalExperience}
+          projects={projects}
           />
         </div>
         

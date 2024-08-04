@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects, Skills } from '@/lib/types'
 import FormStepIndicator from '../form-step-indicator';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
@@ -16,6 +16,7 @@ interface FormStandardTemplateProps {
     setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
     setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
     technicalExperience: TechnicalExperience;
+    projects: Projects;
 }
 
 const steps = [
@@ -36,12 +37,21 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     setProjects,
     setCertificates,
     setAchievements,
-    technicalExperience,}
+    technicalExperience,
+    projects,}
 ) => {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [latestStep, setLatestStep] = useState(1);
     const [skills, setSkillsState] = useState<string[]>([]);
+
+    const scrollableContainerRef = useRef<HTMLDivElement>(null);
+
+    const scrollToTop = () => {
+        if (scrollableContainerRef.current) {
+            scrollableContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
 
     const handleNext = () => {
       if (currentStep < steps.length){
@@ -114,7 +124,9 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
             </div>
 
             {/* MultiStep Form */}
-            <div className='overflow-hidden overflow-y-scroll h-[700px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
+            <div
+            ref={scrollableContainerRef}
+             className='overflow-hidden overflow-y-scroll h-[700px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
 
                 {/* BasicDetails */}
                 {
@@ -295,6 +307,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                     <FormTechnicalExperience
                         technicalExperience={technicalExperience}
                         setTechnicalExperience={setTechnicalExperience}
+                        scrollToTop={scrollToTop}
                     />
                     </>
                 }
@@ -313,7 +326,11 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 5 &&
                     <>
-                    <FormProjects />
+                    <FormProjects 
+                    projects={projects}
+                    setProjects={setProjects}
+                    scrollToTop={scrollToTop}
+                    />
                     </>
                 }
 

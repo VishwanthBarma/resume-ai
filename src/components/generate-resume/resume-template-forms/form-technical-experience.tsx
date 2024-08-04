@@ -5,9 +5,10 @@ import { ArrowLeft, ArrowRight, Brain, CirclePlus, FilePenLine, Loader } from 'l
 interface Props {
   technicalExperience: TechnicalExperience;
   setTechnicalExperience: React.Dispatch<React.SetStateAction<TechnicalExperience>>;
+  scrollToTop: () => void;
 }
 
-const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTechnicalExperience }) => {
+const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTechnicalExperience, scrollToTop }) => {
 
     const [userDescription, setUserDescription] = useState<string>("");
     const [expNum, setExpNum] = useState(1);
@@ -82,7 +83,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
     const changeExperience = () => {
         setExpNum(() => expNum === 1 ? 2 : 1);
-        setUserDescription('');
+        scrollToTop();
     }
 
 
@@ -166,7 +167,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
                                     <button
                                     onClick={changeExperience}
-                                    className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 w-fit'>
+                                    className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 w-fit hover:opacity-90'>
                                         <p className='mr-1'>Experience 2</p>
                                         <ArrowRight className='h-5 w-5'/>
                                     </button>
@@ -246,7 +247,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
 
                                     <button
                                     onClick={changeExperience}
-                                    className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 w-fit'>
+                                    className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 w-fit hover:opacity-90'>
                                         <ArrowLeft className='h-5 w-5'/>
                                         <p className='ml-1'>Experience 2</p>
                                     </button>

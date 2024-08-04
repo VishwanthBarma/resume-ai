@@ -10,7 +10,7 @@ export interface BasicDetails {
   }
 
   export type Skills = string[];
-  
+
   export interface Education {
     college: {
       name: string;
@@ -53,28 +53,28 @@ export interface BasicDetails {
       techstack: string;
       gitlink: string;
       year: string;
-      desc: string;
+      description: string;
     };
     project2: {
       name: string;
       techstack: string;
       gitlink: string;
       year: string;
-      desc: string;
+      description: string;
     };
     project3: {
       name: string;
       techstack: string;
       gitlink: string;
       year: string;
-      desc: string;
+      description: string;
     };
     project4: {
       name: string;
       techstack: string;
       gitlink: string;
       year: string;
-      desc: string;
+      description: string;
     };
   }
   
