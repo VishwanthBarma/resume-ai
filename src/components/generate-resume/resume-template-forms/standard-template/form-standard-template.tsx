@@ -56,6 +56,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     const handleNext = () => {
       if (currentStep < steps.length){
         setCurrentStep(currentStep + 1);
+        scrollToTop();
       }
 
       if (latestStep <= currentStep){
@@ -66,6 +67,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     const handlePrev = () => {
       if (currentStep > 1){
         setCurrentStep(currentStep - 1);
+        scrollToTop();
       } 
     };
   
