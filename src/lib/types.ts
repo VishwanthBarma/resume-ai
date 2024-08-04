@@ -9,8 +9,7 @@ export interface BasicDetails {
     linkedIn: string;
   }
 
-  export type Skills = string[];
-
+  
   export interface Education {
     college: {
       name: string;
@@ -46,6 +45,8 @@ export interface BasicDetails {
       description: string;
     };
   }
+
+  export type Skills = string[];
   
   export interface Projects {
     project1: {
