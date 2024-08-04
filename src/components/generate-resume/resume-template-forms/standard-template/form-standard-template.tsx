@@ -15,6 +15,7 @@ interface FormStandardTemplateProps {
     setProjects: React.Dispatch<React.SetStateAction<Projects>>;
     setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
     setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
+    technicalExperience: TechnicalExperience;
 }
 
 const steps = [
@@ -34,7 +35,8 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     setSkills,
     setProjects,
     setCertificates,
-    setAchievements}
+    setAchievements,
+    technicalExperience,}
 ) => {
 
     const [currentStep, setCurrentStep] = useState(1);
@@ -290,7 +292,10 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 3 && 
                     <>
-                    <FormTechnicalExperience />
+                    <FormTechnicalExperience
+                        technicalExperience={technicalExperience}
+                        setTechnicalExperience={setTechnicalExperience}
+                    />
                     </>
                 }
 
@@ -350,28 +355,28 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                     <div className='flex flex-col gap-4'>
                         <h1 className='font-semibold text-2xl border-b-2 pb-2'>Achievements</h1>
                         <div className='flex flex-col gap-2 px-10'>
-                        <label className='flex items-center justify-between text-slate-200'>
+                        <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 1:
                             <input
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement1')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                             />
                         </label>
-                        <label className='flex items-center justify-between text-slate-200'>
+                        <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 2:
                             <input
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement2')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                             />
                         </label>
-                        <label className='flex items-center justify-between text-slate-200'>
+                        <label className='flex items-center justify-evenly text-slate-200'>
                             Achievement 3:
                             <input
                             type='text'
                             onChange={(e) => handleAchievementsChange(e, 'achievement3')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                             />
                         </label>
                         </div>

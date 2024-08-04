@@ -116,6 +116,7 @@ const StandardTemplate = () => {
           setProjects={setProjects}
           setCertificates={setCertificates}
           setAchievements={setAchievements}
+          technicalExperience={technicalExperience}
           />
         </div>
         
