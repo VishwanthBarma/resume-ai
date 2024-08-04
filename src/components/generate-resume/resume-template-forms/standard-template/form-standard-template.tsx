@@ -90,7 +90,14 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
             ...prev,
             [field]: e.target.value,
         }));
-      };
+    };
+
+    const handleAchievementsChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Achievements) => {
+        setAchievements(prev => ({
+            ...prev,
+            [field]: e.target.value,
+        }));
+    };
 
     return (
         <div className='flex flex-col gap-4 h-full'>
@@ -340,7 +347,35 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 7 && 
                     <>
-                    
+                    <div className='flex flex-col gap-4'>
+                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Achievements</h1>
+                        <div className='flex flex-col gap-2 px-10'>
+                        <label className='flex items-center justify-between text-slate-200'>
+                            Achievement 1:
+                            <input
+                            type='text'
+                            onChange={(e) => handleAchievementsChange(e, 'achievement1')}
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            />
+                        </label>
+                        <label className='flex items-center justify-between text-slate-200'>
+                            Achievement 2:
+                            <input
+                            type='text'
+                            onChange={(e) => handleAchievementsChange(e, 'achievement2')}
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            />
+                        </label>
+                        <label className='flex items-center justify-between text-slate-200'>
+                            Achievement 3:
+                            <input
+                            type='text'
+                            onChange={(e) => handleAchievementsChange(e, 'achievement3')}
+                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                            />
+                        </label>
+                        </div>
+                    </div>
                     </>
                 }
 
