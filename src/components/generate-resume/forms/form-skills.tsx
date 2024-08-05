@@ -50,7 +50,7 @@ const FormSkills: React.FC<FormSkillsProps> = ({ skills, onSkillsChange }) => {
                 <button
                 onClick={() => handleRemoveSkill(index)}
                     className={` text-red-400 hover:opacity-80 bg-neutral-800 p-2 rounded-lg`}>
-                    <Trash className='h-5 w-5'/>
+                    <Trash className='h-4 w-4'/>
                 </button>
               </div>
             ))
