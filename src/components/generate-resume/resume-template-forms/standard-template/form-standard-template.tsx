@@ -175,7 +175,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                 />
                             </label>
                             <label className='w-4/5 flex items-center justify-between text-slate-200'>
-                                GitHub Link :  
+                                GitHub Profile URL :  
                                 <input 
                                 value={basicDetails.github}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
@@ -183,7 +183,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                                 />
                             </label>
                             <label className='w-4/5 flex items-center justify-between text-slate-200'>
-                                LinkedIn Link :  
+                                LinkedIn Profile URL :  
                                 <input 
                                 value={basicDetails.linkedIn}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'

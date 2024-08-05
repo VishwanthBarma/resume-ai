@@ -101,7 +101,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                           <h1 className='text-black'>{index+1}</h1>
                         </div>
                         <label className='w-4/5 flex items-center justify-between text-slate-200'>
-                        Company Name:
+                        Company Name :
                         <input
                             value={exp.companyName}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
@@ -109,7 +109,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                         />
                         </label>
                         <label className='w-4/5 flex items-center justify-between text-slate-200'>
-                        Role:
+                        Role :
                         <input
                             value={exp.role}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
@@ -117,8 +117,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                         />
                         </label>
                         <label className='w-4/5 flex items-center justify-between text-slate-200'>
-                        Duration:
+                        Duration :
                         <input
+                            placeholder='E.g: Aug 2024-Nov 2024'
                             value={exp.duration}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                             onChange={(e) => handleTechnicalExperienceInput(e, index, 'duration')}
@@ -135,7 +136,7 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
                         />
 
                         <div className='mt-8'>
-                        <h1>Description:</h1>
+                        <h1>Description :</h1>
                         <textarea
                             value={exp.description}
                             className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-full mt-3 min-h-40'

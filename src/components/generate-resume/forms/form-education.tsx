@@ -47,14 +47,6 @@ const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) 
                                 </button>
                             </div>
                                 <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
-                                Name :  
-                                <input 
-                                value={edu.name}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
-                                onChange={(e) => handleEducationInput(e, index, 'name')}
-                                />
-                                </label>
-                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Course :  
                                 <input
                                 value={edu.course}
@@ -63,8 +55,17 @@ const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) 
                                 />
                                 </label>
                                 <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
-                                Score :  
+                                School Name :  
                                 <input 
+                                value={edu.name}
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
+                                onChange={(e) => handleEducationInput(e, index, 'name')}
+                                />
+                                </label>
+                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
+                                Score :  
+                                <input
+                                placeholder='E.g: CGPA: 8.2/10'
                                 value={edu.score}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'score')}
@@ -73,6 +74,7 @@ const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) 
                                 <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Duration :  
                                 <input 
+                                placeholder='E.g: 2020-2024'
                                 value={edu.duration}
                                 className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'duration')}

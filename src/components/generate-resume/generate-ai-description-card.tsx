@@ -20,7 +20,7 @@ const GenerateAIDescriptionCard: React.FC<GenerateAIDescriptionCardProps> = ({us
                 value={userDescription}
                 className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-full mt-3 min-h-40'
                 onChange={(e) => setUserDescription(e.target.value)}
-                placeholder='Provide more details about your project'
+                placeholder='Tell me more about your work and contributions'
             />
 
             <div className='flex gap-5'>

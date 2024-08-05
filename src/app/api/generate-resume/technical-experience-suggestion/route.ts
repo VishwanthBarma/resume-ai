@@ -14,14 +14,15 @@ export async function POST(req: NextRequest) {
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
         const prompt = `Review the following technical experience i.e company name, role, description content and provide concise, actionable suggestions for improvement with a focus on increasing ATS (Applicant Tracking System) compliance.
-        Include some matrix in the points.
+        Include some matrix in the points, include some matrix in the points even if the job content doesn't have,
+        like: improved 90%, acheived 95%, optimized 80% and etc,these are examples so in the same way use some well defined matrix which relates to the job content.
 
         Job content:
         ${text}
         
         Give me the well defined output as two points from the description so that i can put it in my resume,
         Just give me 2 points of bullet point, where each point should no exceed 80 words, dont give any other explanation.
-        Output should be a string, with two bullet point points, each point shoudl start with '-'.
+        Output should be a string without any special characters only just with two bullet point points at the beginning, like each point should start with '•'.
         `
         
         const result = await model.generateContent(prompt);
