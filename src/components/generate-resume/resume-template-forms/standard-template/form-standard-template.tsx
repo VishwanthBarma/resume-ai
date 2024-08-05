@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, CircleArrowLeft, CircleArrowRight } from 'lu
 import FormTechnicalExperience from '../../forms/form-technical-experience';
 import FormProjects from '../../forms/form-projects';
 import FormSkills from '../../forms/form-skills';
+import FormEducation from '../../forms/form-education';
 
 
 interface FormStandardTemplateProps {
@@ -91,16 +92,6 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
         setBasicDetails(prev => ({
           ...prev,
           [field]: e.target.value,
-        }));
-    };
-
-    const handleEducationInput = (e: React.ChangeEvent<HTMLInputElement>, section: keyof Education, field: keyof Education[keyof Education]) => {
-        setEducation(prev => ({
-          ...prev,
-          [section]:{
-            ...prev[section],
-            [field]: e.target.value,
-          } 
         }));
     };
 
@@ -213,120 +204,10 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 2 && 
                     <>
-                    <div className='flex flex-col gap-4'>
-                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Education Details</h1>
-                        <div className='flex flex-col gap-12 px-10'>
-                            <div className='flex flex-col'>
-                                <h1 className='text-xl'>College</h1>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Name :  
-                                    <input 
-                                    value={education.college.name}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'college', 'name')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Course :  
-                                    <input
-                                    value={education.college.course}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'college', 'course')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Score :  
-                                    <input 
-                                    value={education.college.score}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'college', 'score')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Duration :  
-                                    <input 
-                                    value={education.college.duration}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'college', 'duration')}
-                                    />
-                                    </label>
-                            </div>
-
-                            <div className='flex flex-col'>
-                                <h1 className='text-xl'>High School</h1>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Name :  
-                                    <input 
-                                    value={education.highschool.name}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'highschool', 'name')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Course :  
-                                    <input 
-                                    value={education.highschool.course}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'highschool', 'course')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Score :  
-                                    <input 
-                                    value={education.highschool.score}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'highschool', 'score')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Duration :  
-                                    <input 
-                                    value={education.highschool.duration}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'highschool', 'duration')}
-                                    />
-                                    </label>
-                            </div>
-
-                            <div className='flex flex-col'>
-                                <h1 className='text-xl'>School</h1>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Name :  
-                                    <input 
-                                    value={education.school.name}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'school', 'name')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Course :  
-                                    <input 
-                                    value={education.school.course}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'school', 'course')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Score :  
-                                    <input 
-                                    value={education.school.score}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'school', 'score')}
-                                    />
-                                    </label>
-                                    <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
-                                    Duration :  
-                                    <input 
-                                    value={education.school.duration}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                                    onChange={(e) => handleEducationInput(e, 'school', 'duration')}
-                                    />
-                                    </label>
-                            </div>
-
-                            
-                        </div>
-                    </div>
+                    <FormEducation
+                    education={education}
+                    setEducation={setEducation}
+                    />
                     </>
                 }
 

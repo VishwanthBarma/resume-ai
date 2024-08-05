@@ -10,25 +10,11 @@ export interface BasicDetails {
   }
 
   
-  export interface Education {
-    college: {
-      name: string;
-      course: string;
-      score: string;
-      duration: string;
-    };
-    highschool: {
-      name: string;
-      course: string;
-      score: string;
-      duration: string;
-    };
-    school: {
-      name: string;
-      course: string;
-      score: string;
-      duration: string;
-    };
+  export interface EducationItem {
+    name: string;
+    course: string;
+    score: string;
+    duration: string;
   }
   
   export interface TechnicalExperienceItem {
@@ -60,5 +46,6 @@ export interface BasicDetails {
   }
 
   export type TechnicalExperience = TechnicalExperienceItem[];
+  export type Education = EducationItem[];
   export type Projects = ProjectItem[];
   

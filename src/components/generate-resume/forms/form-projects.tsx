@@ -8,7 +8,6 @@ interface Props {
   projects: Projects;
   setProjects: React.Dispatch<React.SetStateAction<Projects>>;
   scrollToTop: () => void;
-
 }
 
 const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) => {
