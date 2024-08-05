@@ -36,43 +36,45 @@ const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) 
                 education.map((edu, index) => (
                     <div className='flex flex-col mb-10 px-10'>
                         <div className='flex flex-col'>
-                            <div className='flex gap-4 items-center mb-5'>
-                                <h1 className='text-xl'>Education {index+1}</h1>
+                            <div className='flex gap-4 items-center'>
+                                <div className='text-lg font-semibold rounded-full bg-slate-200 border-neutral-700 border-2 h-10 w-10 flex items-center justify-center'>
+                                    <h1 className='text-black'>{index+1}</h1>
+                                </div>
                                 <button
                                 onClick={() => removeEducation(index)}
                                  className={` text-red-400 p-1 px-3 rounded-lg hover:bg-neutral-900 ${index === 0 && 'hidden'}`}>
                                     Remove
                                 </button>
                             </div>
-                                <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Name :  
                                 <input 
                                 value={edu.name}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'name')}
                                 />
                                 </label>
-                                <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Course :  
                                 <input
                                 value={edu.course}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'course')}
                                 />
                                 </label>
-                                <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Score :  
                                 <input 
                                 value={edu.score}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'score')}
                                 />
                                 </label>
-                                <label className='w-4/6 flex items-center justify-between text-slate-200 m-1'>
+                                <label className='w-4/5 flex items-center justify-between text-slate-200 m-1'>
                                 Duration :  
                                 <input 
                                 value={edu.duration}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                 onChange={(e) => handleEducationInput(e, index, 'duration')}
                                 />
                                 </label>

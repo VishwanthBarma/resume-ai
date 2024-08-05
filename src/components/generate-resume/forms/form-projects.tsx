@@ -4,13 +4,13 @@ import { ArrowLeft, ArrowRight, Brain, FilePenLine, Loader } from 'lucide-react'
 import GenerateAIDescriptionCard from '../generate-ai-description-card';
 import FormSectionNavigationButtons from '../form-section-navigation-buttons';
 
-interface Props {
+interface FormProjectsProps {
   projects: Projects;
   setProjects: React.Dispatch<React.SetStateAction<Projects>>;
   scrollToTop: () => void;
 }
 
-const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) => {
+const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scrollToTop }) => {
 
     const [userDescription, setUserDescription] = useState<string>('');
     const [currentProjIndex, setCurrentProjIndex] = useState(0);
@@ -101,36 +101,38 @@ const FormProjects: React.FC<Props> = ({ projects, setProjects, scrollToTop }) =
                 {
                     projects.map((project, index) => (
                         <div key={index} className={`flex flex-col gap-2 w-full ${currentProjIndex === index ? '' : 'hidden'}`}>
-                            <h1 className='text-xl font-bold'>Project {index+1}</h1>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <div className='text-lg font-semibold rounded-full bg-slate-200 border-neutral-700 border-2 h-10 w-10 flex items-center justify-center'>
+                                <h1 className='text-black'>{index+1}</h1>
+                            </div>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Project Name :
                                 <input 
                                 value={project.name}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'name')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Tech Stack :
                                 <input 
                                 value={project.techstack}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'techstack')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Git Link :
                                 <input 
                                 value={project.gitlink}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'gitlink')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Year :
                                 <input 
                                 value={project.year}
-                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                    className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'year')}
                                 />
                             </label>

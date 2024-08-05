@@ -6,6 +6,9 @@ import FormTechnicalExperience from '../../forms/form-technical-experience';
 import FormProjects from '../../forms/form-projects';
 import FormSkills from '../../forms/form-skills';
 import FormEducation from '../../forms/form-education';
+import FormCertificates from '../../forms/form-certificates';
+import FormAchievements from '../../forms/form-achievements';
+import FormPaginationButtons from '../../form-pagination-buttons';
 
 
 interface FormStandardTemplateProps {
@@ -54,7 +57,6 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [latestStep, setLatestStep] = useState(1);
-    const [skillsState, setSkillsState] = useState<string[]>([]);
 
     const scrollableContainerRef = useRef<HTMLDivElement>(null);
 
@@ -96,15 +98,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     };
 
     const handleSkillsChange = (newSkills: string[]) => {
-        setSkillsState(newSkills);
         setSkills(newSkills);
-    };
-
-    const handleCertificatesChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Certificates) => {
-        setCertificates(prev => ({
-            ...prev,
-            [field]: e.target.value,
-        }));
     };
 
     const handleAchievementsChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Achievements) => {
@@ -132,65 +126,67 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
              className='overflow-hidden overflow-y-scroll h-[700px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
 
                 {/* BasicDetails */}
+
+                {/* TODO: Dynamic Fields and Labels using map */}
                 {
                     currentStep === 1 && 
                     <>
                     <div className='flex flex-col gap-4'>
                         <h1 className='font-semibold text-2xl border-b-2 pb-2'>Basic Details</h1>
                         <div className='flex flex-col gap-2 px-10'>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Your Name :  
                                 <input 
                                 value={basicDetails.name}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'name')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Phone Number :  
                                 <input
                                 value={basicDetails.phone}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'phone')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 City :  
                                 <input
                                 value={basicDetails.city}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'city')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 State :  
                                 <input 
                                 value={basicDetails.state}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'state')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Email :  
                                 <input 
                                 value={basicDetails.gmail}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'gmail')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 GitHub Link :  
                                 <input 
                                 value={basicDetails.github}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'github')}
                                 />
                             </label>
-                            <label className='w-4/6 flex items-center justify-between text-slate-200'>
+                            <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 LinkedIn Link :  
                                 <input 
                                 value={basicDetails.linkedIn}
-                                className='bg-neutral-900 border-none rounded-lg focus:ring-0'
+                                className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                 onChange={(e) => handleBasicDetailsInput(e, 'linkedIn')}
                                 />
                             </label>
@@ -229,7 +225,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 4 &&
                     <>
-                    <FormSkills skills={skillsState} onSkillsChange={handleSkillsChange} />
+                    <FormSkills skills={skills} onSkillsChange={handleSkillsChange} />
                     </>
                 }
 
@@ -251,29 +247,10 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 6 &&
                     <>
-                    <div className='flex flex-col gap-4'>
-                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Certificates</h1>
-                        <div className='flex flex-col gap-2 px-10'>
-                        <label className='flex items-center justify-evenly text-slate-200'>
-                            Certificate 1 :
-                            <input
-                            value={certificates.certificate1}
-                            type='text'
-                            onChange={(e) => handleCertificatesChange(e, 'certificate1')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                            />
-                        </label>
-                        <label className='flex items-center justify-evenly text-slate-200'>
-                            Certificate 2 :
-                            <input
-                            value={certificates.certificate2}
-                            type='text'
-                            onChange={(e) => handleCertificatesChange(e, 'certificate2')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0'
-                            />
-                        </label>
-                        </div>
-                    </div>
+                    <FormCertificates
+                    certificates={certificates}
+                    setCertificates={setCertificates}
+                    />
 
                     </>
                 }
@@ -283,71 +260,22 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 7 && 
                     <>
-                    <div className='flex flex-col gap-4'>
-                        <h1 className='font-semibold text-2xl border-b-2 pb-2'>Achievements</h1>
-                        <div className='flex flex-col gap-2 px-10'>
-                        <label className='flex items-center justify-evenly text-slate-200'>
-                            Achievement 1:
-                            <input
-                            value={achievements.achievement1}
-                            type='text'
-                            onChange={(e) => handleAchievementsChange(e, 'achievement1')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
-                            />
-                        </label>
-                        <label className='flex items-center justify-evenly text-slate-200'>
-                            Achievement 2:
-                            <input
-                            value={achievements.achievement2}
-                            type='text'
-                            onChange={(e) => handleAchievementsChange(e, 'achievement2')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
-                            />
-                        </label>
-                        <label className='flex items-center justify-evenly text-slate-200'>
-                            Achievement 3:
-                            <input
-                            value={achievements.achievement3}
-                            type='text'
-                            onChange={(e) => handleAchievementsChange(e, 'achievement3')}
-                            className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
-                            />
-                        </label>
-                        </div>
-                    </div>
+                    <FormAchievements
+                    achievements={achievements}
+                    setAchievements={setAchievements}
+                    />
                     </>
                 }
 
 
                 {/* Pagination Buttons */}
-
-                <div className='mt-10 pb-20 flex gap-10 justify-center border-t-2 pt-10'>
-                    <button
-                    disabled={currentStep === 1}
-                    onClick={handlePrev}
-                    className={`border-neutral-800 bg-neutral-900 border-2 p-3 px-6 rounded-lg ${currentStep === 1 ? 
-                        "opacity-50 cursor-not-allowed" :
-                        "hover:bg-neutral-800"} 
-                        flex items-center
-                        `
-                        }>
-                        <ChevronLeft className={`${currentStep === 1 && "text-gray-500"} h-6 w-6 text-pink-500`}/>
-                        <p className='font-semibold text-pink-500'>Back</p>
-                    </button>
-
-                    <button
-                    disabled={currentStep >= (steps.length)}
-                    onClick={handleNext}
-                    className={`border-neutral-800 bg-neutral-900 border-2 p-3 px-6 rounded-lg ${currentStep >= steps.length ? 
-                        "opacity-50 cursor-not-allowed" :
-                        "hover:bg-neutral-800"} 
-                        flex items-center
-                        `
-                        }>
-                        <p className='font-semibold text-pink-500'>Next</p>
-                        <ChevronRight className={`${currentStep >= (steps.length) && "text-gray-500"} h-6 w-6 text-pink-500`}/>
-                    </button>
-                </div>
+                <FormPaginationButtons
+                currentStep={currentStep}
+                steps={steps}
+                onNext={handleNext}
+                onPrev={handlePrev}
+                />
+                
 
             </div>
 

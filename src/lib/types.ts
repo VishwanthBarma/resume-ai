@@ -34,18 +34,15 @@ export interface BasicDetails {
     description: string;
   }
   
-  export interface Certificates {
-    certificate1: string;
-    certificate2: string;
+  export interface CertificateItem {
+    title: string;
+    tag: string;
   }
   
-  export interface Achievements {
-    achievement1: string;
-    achievement2: string;
-    achievement3: string;
-  }
+  export type Achievements = string[];
 
   export type TechnicalExperience = TechnicalExperienceItem[];
   export type Education = EducationItem[];
   export type Projects = ProjectItem[];
+  export type Certificates = CertificateItem[];
   

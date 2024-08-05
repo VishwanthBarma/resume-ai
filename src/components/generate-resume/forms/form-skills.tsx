@@ -1,6 +1,7 @@
 // components/FormSkills.tsx
 import React, { useState } from 'react';
 import { Skills } from '@/lib/types';  // Adjust the import based on your file structure
+import { Trash } from 'lucide-react';
 
 interface FormSkillsProps {
   skills: Skills;
@@ -30,30 +31,31 @@ const FormSkills: React.FC<FormSkillsProps> = ({ skills, onSkillsChange }) => {
             type='text'
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
-            className='bg-neutral-800 border-none rounded-lg p-3 focus:ring-0'
+            className='bg-neutral-900 border-none rounded-lg p-3 focus:ring-0'
             placeholder='Enter new skill'
           />
           <button
             onClick={handleAddSkill}
-            className='ml-4 bg-white font-semibold text-pink-500 rounded-lg px-4 py-2'
+            className='ml-4 bg-slate-200 font-semibold text-pink-500 rounded-lg px-4 py-2'
           >
             Add
           </button>
         </div>
 
-        <ul className='list-disc pl-5'>
-          {skills.map((skill, index) => (
-            <li key={index} className='flex justify-between items-center'>
-              {skill}
-              <button
+        <div className='grid grid-flow-col auto-cols-max gap-4 mt-5'>
+          {
+            skills.map((skill, index) => (
+              <div className='flex p-2 pl-3 items-center gap-5 bg-neutral-900 w-fit rounded-lg'>
+                <h1 className='text-slate-200 text-lg'>{skill}</h1>
+                <button
                 onClick={() => handleRemoveSkill(index)}
-                className='ml-2 text-red-500'
-              >
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
+                    className={` text-red-400 hover:opacity-80 bg-neutral-800 p-2 rounded-lg`}>
+                    <Trash className='h-5 w-5'/>
+                </button>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   );

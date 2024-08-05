@@ -30,16 +30,11 @@ const StandardTemplate = () => {
     {name: '', techstack: '', gitlink: '', year: '', description: ''}
   ])
 
-  const [certificates, setCertificates] = useState<Certificates>({
-    certificate1: '',
-    certificate2: '',
-  })
+  const [certificates, setCertificates] = useState<Certificates>([
+    {title: '', tag: ''}
+  ])
 
-  const [achievements, setAchievements] = useState<Achievements>({
-    achievement1: "",
-    achievement2: "",
-    achievement3: "",
-  })
+  const [achievements, setAchievements] = useState<Achievements>(['', ''])
 
 
 

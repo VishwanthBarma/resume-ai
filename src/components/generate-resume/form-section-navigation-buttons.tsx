@@ -41,8 +41,8 @@ const FormSectionNavigationButtons: React.FC<NavigationButtonsProps> = ({
                 disabled={disableNext}
                 className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50'
             >
+                <p className='mr-1'>Next</p>
                 <ArrowRight className='h-5 w-5' />
-                <p className='ml-1'>Next</p>
             </button>
         </div>
         <div className='flex gap-4'>
