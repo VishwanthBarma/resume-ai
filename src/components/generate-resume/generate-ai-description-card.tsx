@@ -8,11 +8,10 @@ interface GenerateAIDescriptionCardProps {
     generateAIDescription: () => Promise<void>;
     loading: Boolean;
     generatedDesc: string;
-    saveDescription: (section: string) => void;
-    section: string;
+    saveDescription: () => void;
 }
 
-const GenerateAIDescriptionCard: React.FC<GenerateAIDescriptionCardProps> = ({userDescription, setUserDescription, generateAIDescription, loading, generatedDesc, saveDescription, section}) => {
+const GenerateAIDescriptionCard: React.FC<GenerateAIDescriptionCardProps> = ({userDescription, setUserDescription, generateAIDescription, loading, generatedDesc, saveDescription}) => {
 
     return (
         <div className='mt-5 border-2 border-dotted p-3 rounded-xl'>
@@ -45,7 +44,7 @@ const GenerateAIDescriptionCard: React.FC<GenerateAIDescriptionCardProps> = ({us
 
                 <button
                     disabled={generatedDesc === ''}
-                    onClick={() => saveDescription(section)}
+                    onClick={saveDescription}
                     className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center mt-2 hover:opacity-90 disabled:cursor-default disabled:opacity-50'>
                     <FilePenLine className='h-5 w-5'/>
                     <p className='ml-1'>Insert To Description</p>

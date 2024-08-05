@@ -3,7 +3,6 @@ import FormStandardTemplate from '@/components/generate-resume/resume-template-f
 import React, { useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Skills, Certificates, Achievements, Projects } from '@/lib/types'
 
-type Props = {}
 
 const StandardTemplate = () => {
 
@@ -38,53 +37,15 @@ const StandardTemplate = () => {
     }
   })
 
-  const [technicalExperience, setTechnicalExperience] = useState<TechnicalExperience>({
-    experience1: {
-      companyName: '',
-      role: '',
-      duration: '',
-      description: '',
-    },
-    experience2: {
-      companyName: '',
-      role: '',
-      duration: '',
-      description: '',
-    }
-  })
+  const [technicalExperience, setTechnicalExperience] = useState<TechnicalExperience>([
+    { companyName: '', role: '', duration: '', description: '' }
+  ]);
 
   const [skills, setSkills] = useState<Skills>([]);
 
-  const [projects, setProjects] = useState<Projects>({
-    project1: {
-      name: '',
-      techstack: '',
-      gitlink: '',
-      year: '',
-      description: '',
-    },
-    project2: {
-      name: '',
-      techstack: '',
-      gitlink: '',
-      year: '',
-      description: '',
-    },
-    project3: {
-      name: '',
-      techstack: '',
-      gitlink: '',
-      year: '',
-      description: '',
-    },
-    project4: {
-      name: '',
-      techstack: '',
-      gitlink: '',
-      year: '',
-      description: '',
-    }
-  })
+  const [projects, setProjects] = useState<Projects>([
+    {name: '', techstack: '', gitlink: '', year: '', description: ''}
+  ])
 
   const [certificates, setCertificates] = useState<Certificates>({
     certificate1: '',

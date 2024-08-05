@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react'
 import { BasicDetails, Education, TechnicalExperience, Certificates, Achievements, Projects, Skills } from '@/lib/types'
 import FormStepIndicator from '../../form-step-indicator';
 import { ChevronLeft, ChevronRight, CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import FormTechnicalExperience from './forms/form-technical-experience';
-import FormProjects from './forms/form-projects';
-import FormSkills from './forms/form-skills';
+import FormTechnicalExperience from '../../forms/form-technical-experience';
+import FormProjects from '../../forms/form-projects';
+import FormSkills from '../../forms/form-skills';
 
 
 interface FormStandardTemplateProps {
@@ -440,7 +440,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
 
                 {/* Pagination Buttons */}
 
-                <div className='mt-10 pb-20 flex gap-10 justify-center'>
+                <div className='mt-10 pb-20 flex gap-10 justify-center border-t-2 pt-10'>
                     <button
                     disabled={currentStep === 1}
                     onClick={handlePrev}

@@ -31,52 +31,21 @@ export interface BasicDetails {
     };
   }
   
-  export interface TechnicalExperience {
-    experience1: {
+  export interface TechnicalExperienceItem {
       companyName: string;
       role: string;
       duration: string;
       description: string;
-    };
-    experience2: {
-      companyName: string;
-      role: string;
-      duration: string;
-      description: string;
-    };
   }
 
   export type Skills = string[];
   
-  export interface Projects {
-    project1: {
-      name: string;
-      techstack: string;
-      gitlink: string;
-      year: string;
-      description: string;
-    };
-    project2: {
-      name: string;
-      techstack: string;
-      gitlink: string;
-      year: string;
-      description: string;
-    };
-    project3: {
-      name: string;
-      techstack: string;
-      gitlink: string;
-      year: string;
-      description: string;
-    };
-    project4: {
-      name: string;
-      techstack: string;
-      gitlink: string;
-      year: string;
-      description: string;
-    };
+  export interface ProjectItem {
+    name: string;
+    techstack: string;
+    gitlink: string;
+    year: string;
+    description: string;
   }
   
   export interface Certificates {
@@ -89,4 +58,7 @@ export interface BasicDetails {
     achievement2: string;
     achievement3: string;
   }
+
+  export type TechnicalExperience = TechnicalExperienceItem[];
+  export type Projects = ProjectItem[];
   
