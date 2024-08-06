@@ -54,7 +54,7 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
 
           {/* Education */}
           <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Education</h1>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Education</h1>
                 <div className='flex flex-col'>
                     {
                         education.map((item, index) => (
@@ -76,13 +76,13 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
 
           {/* Technical Experience */}
           <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Technical Experience</h1>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Technical Experience</h1>
                 <div className='flex flex-col gap-1'>
                     {
                         technicalExperience.map((item, index) => (
                             <div key={index} className='flex flex-col'>
-                                <div className='font-bold flex justify-between'>
-                                    <h1>{item.companyName}</h1>
+                                <div className='font-bold flex justify-between text-[10px]'>
+                                    <h1 className=''>{item.companyName}</h1>
                                     <h1>{item.duration}</h1>
                                 </div>
                                 <h1 className='italic'>{item.role}</h1>
@@ -94,8 +94,8 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
           </div>
 
           {/* Skills */}
-          <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Skills</h1>
+          <div className='flex text-[10px] flex-col'>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Skills</h1>
                 <div className='grid grid-flow-col auto-cols-max justify-center'>
                     {
                         skills.map((item, index) => (
@@ -115,13 +115,13 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
 
           {/* Projects */}
           <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Projects</h1>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Projects</h1>
                 {
                     projects.map((item, index) => (
                         <div key={index} className='flex flex-col'>
-                            <div className='font-bold flex justify-between'>
+                            <div className='font-bold text-[10px] flex justify-between'>
                                 <div className='flex'>
-                                    <h1>{item.name}</h1>
+                                    <h1 className=''>{item.name}</h1>
                                     <span className={`${item.name !== '' && item.techstack !== '' ? '' : 'hidden'}`}>-</span>
                                     {item.techstack && (
                                         <span className='ml-1 text-gray-600'>
@@ -144,7 +144,7 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
 
           {/* Certificates */}
           <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Certificates</h1>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Certificates</h1>
                 <div className='flex flex-col'>
                     {
                         certificates.map((item, index) => (
@@ -161,7 +161,7 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
 
           {/* Achievements */}
           <div className='flex text-[8px] flex-col'>
-                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Achievements</h1>
+                <h1 className='text-[12px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Achievements</h1>
                 <div className='flex flex-col'>
                     {
                         achievements.map((item, index) => (
