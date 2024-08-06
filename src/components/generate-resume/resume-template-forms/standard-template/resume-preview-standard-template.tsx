@@ -94,23 +94,84 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
           </div>
 
           {/* Skills */}
-          <div>
-
+          <div className='flex text-[8px] flex-col'>
+                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Skills</h1>
+                <div className='grid grid-flow-col auto-cols-max justify-center'>
+                    {
+                        skills.map((item, index) => (
+                            <div className='' key={index}>
+                                <h1 className='flex items-center'>{item}
+                                {
+                                    index < (skills.length - 1) && (
+                                        <span className='mx-1'>|</span>
+                                    )
+                                }
+                                </h1>
+                            </div>
+                        ))
+                    }
+                </div>
           </div>
 
           {/* Projects */}
-          <div>
+          <div className='flex text-[8px] flex-col'>
+                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Projects</h1>
+                {
+                    projects.map((item, index) => (
+                        <div key={index} className='flex flex-col'>
+                            <div className='font-bold flex justify-between'>
+                                <div className='flex'>
+                                    <h1>{item.name}</h1>
+                                    <span className={`${item.name !== '' && item.techstack !== '' ? '' : 'hidden'}`}>-</span>
+                                    {item.techstack && (
+                                        <span className='ml-1 text-gray-600'>
+                                            ( {item.techstack} )
+                                        </span>
+                                    )}
+                                </div>
 
+                                <div className='flex'>
+                                    <a href={item.gitlink} target="_blank" rel="noopener noreferrer" className={`text-teal-800 ${item.gitlink !== '' ? '' : 'hidden'}`}>GitHub</a>
+                                    <span className={`${item.gitlink !== '' && item.year !== '' ? '' : 'hidden'} mx-[2px]`}>|</span>
+                                    <h1>{item.year}</h1>
+                                </div>
+                            </div>
+                            <h1 className='leading-[1.38]'>{renderDescription(item.description)}</h1>
+                        </div>
+                    ))
+                }
           </div>
 
           {/* Certificates */}
-          <div>
-
+          <div className='flex text-[8px] flex-col'>
+                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Certificates</h1>
+                <div className='flex flex-col'>
+                    {
+                        certificates.map((item, index) => (
+                            <div key={index} className='flex items-center'>
+                                <span className={`${item.title !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
+                                <h1 className='font-semibold'>{item.title}</h1>
+                                <span className={`${item.title !== '' && item.tag !== '' ? '' : 'hidden'} mx-[2px]`}>|</span>
+                                <h1>{item.tag}</h1>
+                            </div>
+                        ))
+                    }
+                </div>
           </div>
 
           {/* Achievements */}
-          <div>
-
+          <div className='flex text-[8px] flex-col'>
+                <h1 className='text-[10px] text-teal-800 border-b-[1px] border-neutral-300 w-full'>Achievements</h1>
+                <div className='flex flex-col'>
+                    {
+                        achievements.map((item, index) => (
+                            <div className='flex items-center'>
+                                <span className={`${item !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
+                                <h1 className=''>{item}</h1>
+                            </div>
+                        ))
+                    }
+                </div>
           </div>
 
         </div>

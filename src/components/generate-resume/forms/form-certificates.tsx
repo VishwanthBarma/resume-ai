@@ -72,7 +72,7 @@ const FormCertificates: React.FC<FormCertificatesProps> = ({certificates, setCer
                         className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50 w-fit'
                     >
                         <CirclePlus className='h-5 w-5' />
-                        <p className='ml-1'>Add Education</p>
+                        <p className='ml-1'>Add Certificate</p>
                     </button>
                 </div>
             </div>

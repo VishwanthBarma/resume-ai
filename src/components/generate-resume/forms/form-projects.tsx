@@ -115,6 +115,7 @@ const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scro
                             <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Tech Stack :
                                 <input 
+                                placeholder='E.g: Reactjs, Javascript'
                                 value={project.techstack}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0 w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'techstack')}
@@ -131,6 +132,7 @@ const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scro
                             <label className='w-4/5 flex items-center justify-between text-slate-200'>
                                 Year :
                                 <input 
+                                placeholder='E.g: Aug 2023'
                                 value={project.year}
                                     className='bg-neutral-900 border-none rounded-lg focus:ring-0  w-3/5'
                                     onChange={(e) => handleProjectInput(e, index, 'year')}
