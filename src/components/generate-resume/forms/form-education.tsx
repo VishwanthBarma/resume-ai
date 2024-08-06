@@ -34,7 +34,7 @@ const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) 
             <h1 className='font-semibold text-2xl border-b-2 pb-2'>Education Details</h1>
             {
                 education.map((edu, index) => (
-                    <div className='flex flex-col mb-10 px-10'>
+                    <div key={index} className='flex flex-col mb-10 px-10'>
                         <div className='flex flex-col'>
                             <div className='flex gap-4 items-center'>
                                 <div className='text-lg font-semibold rounded-full bg-slate-200 border-neutral-700 border-2 h-10 w-10 flex items-center justify-center'>

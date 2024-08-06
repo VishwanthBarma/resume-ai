@@ -35,7 +35,7 @@ const FormCertificates: React.FC<FormCertificatesProps> = ({certificates, setCer
             <div className='flex flex-col gap-2 px-10'>
                 {
                     certificates.map((certificate, index) => (
-                        <div className='flex flex-col mb-10'>
+                        <div key={index} className='flex flex-col mb-10'>
                             <div className='flex gap-4 items-center'>
                                 <div className='text-lg font-semibold rounded-full bg-slate-200 border-neutral-700 border-2 h-10 w-10 flex items-center justify-center'>
                                     <h1 className='text-black'>{index+1}</h1>

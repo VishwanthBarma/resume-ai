@@ -165,7 +165,7 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
                 <div className='flex flex-col'>
                     {
                         achievements.map((item, index) => (
-                            <div className='flex items-center'>
+                            <div key={index} className='flex items-center'>
                                 <span className={`${item !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
                                 <h1 className=''>{item}</h1>
                             </div>

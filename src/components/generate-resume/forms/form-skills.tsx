@@ -45,7 +45,7 @@ const FormSkills: React.FC<FormSkillsProps> = ({ skills, setSkills }) => {
         <div className='grid grid-flow-col auto-cols-max gap-4 mt-5'>
           {
             skills.map((skill, index) => (
-              <div className='flex p-2 pl-3 items-center gap-5 bg-neutral-900 w-fit rounded-lg'>
+              <div key={index} className='flex p-2 pl-3 items-center gap-5 bg-neutral-900 w-fit rounded-lg'>
                 <h1 className='text-slate-200 text-lg'>{skill}</h1>
                 <button
                 onClick={() => handleRemoveSkill(index)}

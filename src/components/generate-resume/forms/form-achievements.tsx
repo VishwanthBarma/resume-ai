@@ -33,7 +33,7 @@ const FormAchievements: React.FC<FormAchievementsProps> = ({achievements, setAch
 
                 {
                     achievements.map((achievement, index) => (
-                        <div className='flex gap-3 px-10'>
+                        <div key={index} className='flex gap-3 px-10'>
                             <div className='text-lg font-semibold rounded-full bg-slate-200 border-neutral-700 border-2 h-10 w-10 flex items-center justify-center'>
                                 <h1 className='text-black'>{index+1}</h1>
                             </div>
