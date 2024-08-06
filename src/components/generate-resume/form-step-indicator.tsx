@@ -40,7 +40,7 @@ const FormStepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, latestSt
                         }
                     </div>
                     {
-                        currentStep != index+1 && <p className='absolute -top-14 -left-12 bg-neutral-900 border-neutral-800 shadow-lg shadow-slate-800 text-slate-100 w-28 h-12 text-center rounded-lg text-sm hidden group-hover:flex items-center justify-center border-2 '>{step}</p>
+                        currentStep != index+1 && <p className='absolute -top-16 -left-12 bg-neutral-900 border-neutral-700 shadow-lg shadow-slate-700 text-slate-100 w-28 h-12 text-center rounded-lg text-sm hidden group-hover:flex items-center justify-center border-2 '>{step}</p>
                     }
                     
                 </div>

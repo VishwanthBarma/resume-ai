@@ -39,7 +39,15 @@ const StandardTemplate = () => {
 
   const [achievements, setAchievements] = useState<Achievements>(['', ''])
 
+  const [resumeFileName, setResumeFileName] = useState('');
+
+  console.log(resumeFileName);
+
   const resumeRef = useRef(null);
+
+  const handleSaveProgress = () => {
+    // store in database
+  }
 
   return (
     <div className='flex gap-10 h-full p-6 px-14'>
@@ -63,12 +71,23 @@ const StandardTemplate = () => {
               pageStyle="@page { size: A4; margin: 0; }"
               documentTitle='GeneratedResume- Resume.AI'
             />
-            <button
-                  className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50'
+            <div className='flex gap-1'>
+              <input
+              placeholder='Add file name to save: '
+              className='focus:ring-0 bg-neutral-900 border-none text-sm rounded-lg'
+              value={resumeFileName}
+              onChange={(e) => setResumeFileName(e.target.value)}
               >
-                  <Save className='h-4 w-4' />
-                  <p className='ml-1 text-sm'>Save</p>
-            </button>
+              </input>
+              <button
+              disabled={resumeFileName === ''}
+                onClick={handleSaveProgress}
+                    className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50'
+                >
+                    <Save className='h-4 w-4' />
+                    <p className='ml-1 text-sm'>Save</p>
+              </button>
+            </div>
           </div>
         </div>
 
