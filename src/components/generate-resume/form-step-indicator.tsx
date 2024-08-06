@@ -15,7 +15,7 @@ const FormStepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, latestSt
     <h1 className='text-sm'>Step {currentStep} of {steps.length}</h1>
         {
             steps.map((step, index) => (
-                <div className='relative group'>
+                <div key={index} className='relative group'>
                     <div
                     key={index}
                     onClick={(e) => {

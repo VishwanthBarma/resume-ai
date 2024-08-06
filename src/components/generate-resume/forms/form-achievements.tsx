@@ -4,7 +4,7 @@ import React from 'react'
 
 interface FormAchievementsProps {
     achievements: Achievements;
-    setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
+    setAchievements: (updater: (prev: Achievements) => Achievements) => void;
 
 }
 

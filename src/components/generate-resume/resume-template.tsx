@@ -1,4 +1,7 @@
+'use client'
+import { useGenerateResumeStore } from '@/store/generate-resume-store';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 type Props = {
@@ -9,12 +12,20 @@ type Props = {
 }
 
 const ResumeTemplate = ({title, img, url, disable}: Props) => {
+  const { resetState } = useGenerateResumeStore();
+  const router = useRouter();
+
+  const handleClick = () => {
+    resetState();
+    router.push(url);
+  }
+
   return (
     <div className={`m-2 hover:scale-105 transition ease-in-out mb-5 ${disable && 'cursor-not-allowed opacity-50'}`}>
-        <Link href={ disable ? "" : url } className={disable && 'cursor-not-allowed'}>
+        <button onClick={handleClick} className={disable && 'cursor-not-allowed'}>
             <img className='h-[500px] rounded-xl' src={img}></img>
             <p className='text-center font-bold mt-2'>{title}</p>
-        </Link>
+        </button>
     </div>
   )
 }

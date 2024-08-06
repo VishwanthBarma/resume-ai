@@ -5,44 +5,29 @@ import { BasicDetails, Education, TechnicalExperience, Skills, Certificates, Ach
 import ResumePreviewStandardTemplate from '@/components/generate-resume/resume-template-forms/standard-template/resume-preview-standard-template'
 import { FileDown, Save } from 'lucide-react'
 import ReactToPrint from 'react-to-print';
+import { useGenerateResumeStore } from '@/store/generate-resume-store'
 
 
 const StandardTemplate = () => {
+  const {
+    basicDetails,
+    education,
+    technicalExperience,
+    skills,
+    projects,
+    certificates,
+    achievements,
+    setBasicDetails,
+    setEducation,
+    setTechnicalExperience,
+    setSkills,
+    setProjects,
+    setCertificates,
+    setAchievements,
+  } = useGenerateResumeStore();
 
-  const [basicDetails, setBasicDetails] = useState<BasicDetails>({
-    name: '',
-    phone: '',
-    city: '',
-    state: '',
-    gmail: '',
-    github: '',
-    linkedIn: '',
-  })
-
-  const [education, setEducation] = useState<Education>([
-    { name: '', course: '', score: '', duration: '' }
-  ])
-
-  const [technicalExperience, setTechnicalExperience] = useState<TechnicalExperience>([
-    { companyName: '', role: '', duration: '', description: '' }
-  ]);
-
-  const [skills, setSkills] = useState<Skills>([]);
-
-  const [projects, setProjects] = useState<Projects>([
-    {name: '', techstack: '', gitlink: '', year: '', description: ''}
-  ])
-
-  const [certificates, setCertificates] = useState<Certificates>([
-    {title: '', tag: ''}
-  ])
-
-  const [achievements, setAchievements] = useState<Achievements>(['', ''])
 
   const [resumeFileName, setResumeFileName] = useState('');
-
-  console.log(resumeFileName);
-
   const resumeRef = useRef(null);
 
   const handleSaveProgress = () => {

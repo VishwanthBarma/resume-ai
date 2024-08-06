@@ -6,7 +6,7 @@ import FormSectionNavigationButtons from '../form-section-navigation-buttons';
 
 interface FormProjectsProps {
   projects: Projects;
-  setProjects: React.Dispatch<React.SetStateAction<Projects>>;
+  setProjects: (updater: (prev: Projects) => Projects) => void;
   scrollToTop: () => void;
 }
 

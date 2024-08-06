@@ -2,7 +2,7 @@
 
 import Resume3DCard from '@/components/global/resume-3d-card';
 import ShiningText from '@/components/loading/shining-text';
-import { useResumeStore } from '@/store/resume-store';
+import { useEnhanceResumeStore } from '@/store/enhance-resume-store';
 import { CloudUpload } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
@@ -11,12 +11,13 @@ import PDFToText from 'react-pdftotext';
 
 const UploadResume: React.FC = () => {
     const [loading, setLoading] = useState(false);
-    const setResumeFile = useResumeStore((state) => state.setResumeFile);
-    const setResumeSuggestions = useResumeStore((state) => state.setResumeSuggestions);
+    const setResumeFile = useEnhanceResumeStore((state) => state.setResumeFile);
+    const setResumeSuggestions = useEnhanceResumeStore((state) => state.setResumeSuggestions);
     const router = useRouter();
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
+        console.log("Resume File SETTING to zustand: ", file);
         setResumeFile(file);
         generateSuggestions(file);
     }, []);

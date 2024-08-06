@@ -4,7 +4,7 @@ import React from 'react'
 
 interface FormCertificatesProps {
     certificates: Certificates,
-    setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
+    setCertificates: (updater: (prev: Certificates) => Certificates) => void;
 }
 
 const FormCertificates: React.FC<FormCertificatesProps> = ({certificates, setCertificates}) => {

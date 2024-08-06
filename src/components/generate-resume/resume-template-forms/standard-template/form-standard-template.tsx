@@ -12,13 +12,13 @@ import FormPaginationButtons from '../../form-pagination-buttons';
 
 
 interface FormStandardTemplateProps {
-    setBasicDetails: React.Dispatch<React.SetStateAction<BasicDetails>>;
-    setEducation: React.Dispatch<React.SetStateAction<Education>>;
-    setTechnicalExperience: React.Dispatch<React.SetStateAction<TechnicalExperience>>;
-    setSkills: React.Dispatch<React.SetStateAction<Skills>>;
-    setProjects: React.Dispatch<React.SetStateAction<Projects>>;
-    setCertificates: React.Dispatch<React.SetStateAction<Certificates>>;
-    setAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
+    setBasicDetails: (updater: (prev: BasicDetails) => BasicDetails) => void;
+    setEducation: (updater: (prev: Education) => Education) => void;
+    setTechnicalExperience: (updater: (prev: TechnicalExperience) => TechnicalExperience) => void;
+    setSkills: (updater: (prev: Skills) => Skills) => void;
+    setProjects: (updater: (prev: Projects) => Projects) => void;
+    setCertificates: (updater: (prev: Certificates) => Certificates) => void;
+    setAchievements: (updater: (prev: Achievements) => Achievements) => void;
     basicDetails: BasicDetails;
     education: Education;
     technicalExperience: TechnicalExperience;
@@ -27,6 +27,7 @@ interface FormStandardTemplateProps {
     certificates: Certificates;
     achievements: Achievements;
 }
+
 
 const steps = [
     'Basic Details',
@@ -94,17 +95,6 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
         setBasicDetails(prev => ({
           ...prev,
           [field]: e.target.value,
-        }));
-    };
-
-    const handleSkillsChange = (newSkills: string[]) => {
-        setSkills(newSkills);
-    };
-
-    const handleAchievementsChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Achievements) => {
-        setAchievements(prev => ({
-            ...prev,
-            [field]: e.target.value,
         }));
     };
 
@@ -225,7 +215,7 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {
                     currentStep === 4 &&
                     <>
-                    <FormSkills skills={skills} onSkillsChange={handleSkillsChange} />
+                    <FormSkills skills={skills} setSkills={setSkills} />
                     </>
                 }
 

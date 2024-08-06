@@ -5,9 +5,10 @@ import FormSectionNavigationButtons from '../form-section-navigation-buttons';
 
 interface Props {
   technicalExperience: TechnicalExperience;
-  setTechnicalExperience: React.Dispatch<React.SetStateAction<TechnicalExperience>>;
+  setTechnicalExperience: (updater: (prev: TechnicalExperience) => TechnicalExperience) => void;
   scrollToTop: () => void;
 }
+
 
 const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTechnicalExperience, scrollToTop }) => {
 

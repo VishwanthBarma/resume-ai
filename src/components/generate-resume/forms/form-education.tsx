@@ -4,7 +4,7 @@ import React from 'react'
 
 interface FormEducationProps {
     education: Education;
-    setEducation: React.Dispatch<React.SetStateAction<Education>>;
+    setEducation: (updater: (prev: Education) => Education) => void;
 }
 
 const FormEducation: React.FC<FormEducationProps> = ({education, setEducation}) => {

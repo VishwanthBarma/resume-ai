@@ -1,7 +1,9 @@
 'use client'
 import PdfViewer from '@/components/enhance-resume/pdf-viewer'
 import SuggestionCard from '@/components/enhance-resume/suggestion-card'
-import { useResumeStore } from '@/store/resume-store'
+import { base64ToFile } from '@/lib/fileUtils'
+import { useEnhanceResumeStore } from '@/store/enhance-resume-store'
+import { LoaderCircle } from 'lucide-react'
 import React from 'react'
 
 type Props = {}
@@ -12,8 +14,8 @@ type Suggestion = {
 }
 
 const EnhanceResume = () => {
-    const resumeFile = useResumeStore((state) => state.resumeFile);
-    const resumeSuggestions = useResumeStore((state) => state.resumeSuggestions);
+    const resumeFileBase64 = useEnhanceResumeStore((state) => state.resumeFileBase64);
+    const resumeSuggestions = useEnhanceResumeStore((state) => state.resumeSuggestions);
 
     const parseSuggestions = (jsonText: string): Suggestion[] => {
         try {
@@ -42,6 +44,13 @@ const EnhanceResume = () => {
     };
     
     const suggestions = parseSuggestions(resumeSuggestions);
+
+    const resumeFile = resumeFileBase64
+        ? base64ToFile(resumeFileBase64.base64, resumeFileBase64.name, resumeFileBase64.type)
+        : null;
+
+    console.log("Resume File GETTING from zustand: ", resumeFile);
+    
 
   return (
     <div className='h-full flex gap-3 py-3 px-5 pb-5'>
@@ -76,7 +85,9 @@ const EnhanceResume = () => {
                 :
                 <>
                 <div className='flex items-center justify-center h-full'>
-                    <h1 className='bg-neutral-800 p-3 px-5 rounded-lg font-semibold text-neutral-500'>Failed to load resume</h1>
+                    <h1 className='bg-neutral-800 p-3 px-5 rounded-lg font-semibold text-neutral-500 flex items-center'>
+                        <LoaderCircle className='h-5 w-5 mr-1 animate-spin'/>
+                        Loading Your Resume</h1>
                 </div>
                 </>
             }

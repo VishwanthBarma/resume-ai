@@ -5,21 +5,21 @@ import { Trash } from 'lucide-react';
 
 interface FormSkillsProps {
   skills: Skills;
-  onSkillsChange: (skills: Skills) => void;
+  setSkills: (updater: (prev: Skills) => Skills) => void;
 }
 
-const FormSkills: React.FC<FormSkillsProps> = ({ skills, onSkillsChange }) => {
+const FormSkills: React.FC<FormSkillsProps> = ({ skills, setSkills }) => {
   const [newSkill, setNewSkill] = useState('');
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== '') {
-      onSkillsChange([...skills, newSkill]);
+      setSkills(prev => [...prev, newSkill]);
       setNewSkill('');
     }
   };
 
   const handleRemoveSkill = (index: number) => {
-    onSkillsChange(skills.filter((_, i) => i !== index));
+    setSkills(prev => prev.filter((_, i) => i !== index));
   };
 
   return (
