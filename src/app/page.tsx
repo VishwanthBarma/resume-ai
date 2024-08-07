@@ -46,7 +46,7 @@ export default function Home() {
           }
           >
             <Image
-              src={`/temp-banner.png`}
+              src={`/hero-banner.png`}
               alt="hero"
               height={720}
               width={1400}
@@ -58,13 +58,15 @@ export default function Home() {
       </section>
 
       {/* Moving Quotes */}
-      <InfiniteMovingText
-        texts={quotes}
-        direction="left"
-        speed="slow"
-        pauseOnHover={true}
-        className="md:mt-[18rem] mt-[-100px]"
-      />
+      <div className="flex justify-center">
+        <InfiniteMovingText
+          texts={quotes}
+          direction="left"
+          speed="slow"
+          pauseOnHover={true}
+          className="md:mt-[18rem] mt-[-100px]"
+        />
+      </div>
 
       {/* Templates Parallax Section */}
       <section>

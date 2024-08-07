@@ -48,7 +48,7 @@ const ResumeCard: React.FC<ResumeCardProps> = ({ resumeData }) => {
     return (
         <button
             onClick={handleClick}
-            className='h-64 w-64 bg-neutral-900 rounded-xl hover:scale-105 transition ease-in-out'>
+            className='h-64 w-64 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl hover:scale-105 transition ease-in-out'>
             {
                 loading ? 
                 <>
