@@ -113,7 +113,7 @@ const StandardTemplate = () => {
                 </button>
               )}
               content={() => resumeDownloadRef.current}
-              pageStyle="@page { size: A4; margin: 0; }"
+              pageStyle="@page { margin: 0; }"
               documentTitle='GeneratedResume- Resume.AI'
             />
 

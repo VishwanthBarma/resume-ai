@@ -120,11 +120,11 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
                     projects.map((item, index) => (
                         <div key={index} className='flex flex-col'>
                             <div className='font-bold text-[10px] flex justify-between'>
-                                <div className='flex'>
+                                <div className='flex items-center'>
                                     <h1 className=''>{item.name}</h1>
                                     <span className={`${item.name !== '' && item.techstack !== '' ? '' : 'hidden'}`}>-</span>
                                     {item.techstack && (
-                                        <span className='ml-1 text-gray-600'>
+                                        <span className='ml-1 text-gray-700 text-[8px]'>
                                             ( {item.techstack} )
                                         </span>
                                     )}
@@ -149,10 +149,9 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
                     {
                         certificates.map((item, index) => (
                             <div key={index} className='flex items-center'>
-                                <span className={`${item.title !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
-                                <h1 className='font-semibold'>{item.title}</h1>
-                                <span className={`${item.title !== '' && item.tag !== '' ? '' : 'hidden'} mx-[2px]`}>|</span>
-                                <h1>{item.tag}</h1>
+                                <h1 className='font-semibold'><span className={`${item.title !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
+                                {item.title}</h1>
+                                <h1><span className={`${item.title !== '' && item.tag !== '' ? '' : 'hidden'} mx-[2px]`}>|</span>{item.tag}</h1>
                             </div>
                         ))
                     }
@@ -166,8 +165,8 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
                     {
                         achievements.map((item, index) => (
                             <div key={index} className='flex items-center'>
-                                <span className={`${item !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>
-                                <h1 className=''>{item}</h1>
+                                
+                                <h1 className=''><span className={`${item !== '' ? '' : 'hidden'} mr-[2px]`}>•</span>{item}</h1>
                             </div>
                         ))
                     }

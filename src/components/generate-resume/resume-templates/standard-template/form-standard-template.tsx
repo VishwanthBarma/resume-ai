@@ -70,12 +70,13 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
     const handleNext = () => {
       if (currentStep < steps.length){
         setCurrentStep(currentStep + 1);
-        scrollToTop();
-      }
+        }
+    
+        if (latestStep <= currentStep){
+            setLatestStep(latestStep + 1);
+        }
 
-      if (latestStep <= currentStep){
-        setLatestStep(latestStep + 1);
-      }
+        scrollToTop();
     };
   
     const handlePrev = () => {
@@ -112,8 +113,8 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
 
             {/* MultiStep Form */}
             <div
-            ref={scrollableContainerRef}
-             className='overflow-hidden overflow-y-scroll h-[700px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
+                ref={scrollableContainerRef}
+             className='overflow-hidden overflow-y-scroll max-h-full scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
 
                 {/* BasicDetails */}
 

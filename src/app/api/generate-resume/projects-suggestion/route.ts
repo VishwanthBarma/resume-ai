@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         
         Give me the well defined output as two points from the description so that i can put it in my resume,
         Just give me 2 points of bullet point, where each point should no exceed 80 words, dont give any other explanation.
-        Output should be a string without any special characters only just with two bullet point points at the beginning, like each point should start with '•'.
+        Output should be a string without any special characters like * only just with two bullet point points at the beginning, like each point should start with '•'.
         `
         
         const result = await model.generateContent(prompt);

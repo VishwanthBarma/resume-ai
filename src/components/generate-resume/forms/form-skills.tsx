@@ -25,7 +25,7 @@ const FormSkills: React.FC<FormSkillsProps> = ({ skills, setSkills }) => {
   return (
     <div className='flex flex-col gap-4'>
       <h1 className='font-semibold text-2xl border-b-2 pb-2'>Skills</h1>
-      <div className='flex flex-col gap-2 px-10'>
+      <div className='flex flex-col gap-2 px-10 max-h-screen'>
         <div className='flex items-center'>
           <input
             type='text'
@@ -42,7 +42,7 @@ const FormSkills: React.FC<FormSkillsProps> = ({ skills, setSkills }) => {
           </button>
         </div>
 
-        <div className='grid grid-flow-col auto-cols-max gap-4 mt-5'>
+        <div className='flex flex-wrap gap-4 mt-5 h-full overflow-hidden overflow-y-scroll'>
           {
             skills.map((skill, index) => (
               <div key={index} className='flex p-2 pl-3 items-center gap-5 bg-neutral-900 w-fit rounded-lg'>
