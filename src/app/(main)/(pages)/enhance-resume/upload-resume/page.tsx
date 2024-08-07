@@ -17,7 +17,6 @@ const UploadResume: React.FC = () => {
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
-        console.log("Resume File SETTING to zustand: ", file);
         setResumeFile(file);
         generateSuggestions(file);
     }, []);

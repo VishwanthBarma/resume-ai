@@ -48,8 +48,6 @@ const EnhanceResume = () => {
     const resumeFile = resumeFileBase64
         ? base64ToFile(resumeFileBase64.base64, resumeFileBase64.name, resumeFileBase64.type)
         : null;
-
-    console.log("Resume File GETTING from zustand: ", resumeFile);
     
 
   return (

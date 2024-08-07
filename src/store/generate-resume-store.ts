@@ -11,6 +11,7 @@ interface GenerateResumeState {
     projects: Projects;
     certificates: Certificates;
     achievements: Achievements;
+    resumeId: string | null;
     setBasicDetails: (updater: (prev: BasicDetails) => BasicDetails) => void;
     setEducation: (updater: (prev: Education) => Education) => void;
     setTechnicalExperience: (updater: (prev: TechnicalExperience) => TechnicalExperience) => void;
@@ -18,6 +19,7 @@ interface GenerateResumeState {
     setProjects: (updater: (prev: Projects) => Projects) => void;
     setCertificates: (updater: (prev: Certificates) => Certificates) => void;
     setAchievements: (updater: (prev: Achievements) => Achievements) => void;
+    setResumeId: (id: string | null) => void;
     resetState: () => void;
 }
 
@@ -31,6 +33,7 @@ export const useGenerateResumeStore = create<GenerateResumeState>()(
             projects: [{ name: '', techstack: '', gitlink: '', year: '', description: '' }],
             certificates: [{ title: '', tag: '' }],
             achievements: ['', ''],
+            resumeId: null,
             setBasicDetails: (updater) => set((state) => ({
                 basicDetails: updater(state.basicDetails)
             })),
@@ -52,6 +55,7 @@ export const useGenerateResumeStore = create<GenerateResumeState>()(
             setAchievements: (updater) => set((state) => ({
                 achievements: updater(state.achievements)
             })),
+            setResumeId: (id) => set({ resumeId: id }),
             resetState: () => {
                 set({
                     basicDetails: { name: '', phone: '', city: '', state: '', gmail: '', github: '', linkedIn: '' },
@@ -60,7 +64,8 @@ export const useGenerateResumeStore = create<GenerateResumeState>()(
                     skills: [],
                     projects: [{ name: '', techstack: '', gitlink: '', year: '', description: '' }],
                     certificates: [{ title: '', tag: '' }],
-                    achievements: ['', '']
+                    achievements: ['', ''],
+                    resumeId: null,
                 });
                 localStorage.removeItem('generate-resume-storage');
             }
