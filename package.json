@@ -19,6 +19,7 @@
     "@tsparticles/slim": "^3.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "firebase": "^10.12.5",
     "framer-motion": "^11.3.17",
     "lucide-react": "^0.414.0",

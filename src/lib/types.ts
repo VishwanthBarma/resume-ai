@@ -45,4 +45,46 @@ export interface BasicDetails {
   export type Education = EducationItem[];
   export type Projects = ProjectItem[];
   export type Certificates = CertificateItem[];
+
+  export type ResumeData = {
+    resumeId: string;
+    templateName: string;
+    date: string;
+    basicDetails: {
+      name: string;
+      phone: string;
+      city: string;
+      state: string;
+      gmail: string;
+      github: string;
+      linkedIn: string;
+    };
+    education: Array<{
+      name: string;
+      course: string;
+      score: string;
+      duration: string;
+    }>;
+    technicalExperience: Array<{
+      companyName: string;
+      role: string;
+      duration: string;
+      description: string;
+    }>;
+    skills: string[];
+    projects: Array<{
+      name: string;
+      techstack: string;
+      gitlink: string;
+      year: string;
+      description: string;
+    }>;
+    certificates: Array<{
+      title: string;
+      tag: string;
+    }>;
+    achievements: string[];
+  };
+  
+
   
