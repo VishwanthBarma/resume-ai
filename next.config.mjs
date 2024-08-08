@@ -1,15 +1,14 @@
-// next.config.js
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Other configurations...
-
-  webpack: (config) => {
+  webpack(config) {
     // Disable the 'canvas' module
-    config.resolve.alias.canvas = false;
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
 
     return config;
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
