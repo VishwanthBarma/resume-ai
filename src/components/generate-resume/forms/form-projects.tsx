@@ -17,8 +17,6 @@ const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scro
     const [generatedDesc, setGeneratedDesc] = useState<string>('');
     const [loading, setLoading] = useState<Boolean>(false);
 
-    console.log(projects);
-
     const handleProjectInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number, field: keyof ProjectItem) => {
         const { value } = e.target;
         setProjects(prev => {
