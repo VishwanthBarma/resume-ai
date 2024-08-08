@@ -1,11 +1,13 @@
 'use client';
 
-import PdfViewer from '@/components/enhance-resume/pdf-viewer';
 import SuggestionCard from '@/components/enhance-resume/suggestion-card';
 import { base64ToFile } from '@/lib/fileUtils';
 import { useEnhanceResumeStore } from '@/store/enhance-resume-store';
 import { LoaderCircle } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const PdfViewer = dynamic(() => import('@/components/enhance-resume/pdf-viewer'), { ssr: false });
 
 type Suggestion = {
     heading: string;
