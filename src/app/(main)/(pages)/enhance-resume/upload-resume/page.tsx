@@ -15,17 +15,16 @@ const UploadResume: React.FC = () => {
     const setResumeSuggestions = useEnhanceResumeStore((state) => state.setResumeSuggestions);
     const router = useRouter();
 
-    const generateSuggestions = async (file: File | Blob) => {
+    const generateSuggestions = async (file: File | null) => {
+        if(!file) return;
+
         setLoading(true);
         try {
             const text = await PDFToText(file);
 
             const response = await fetch('/api/enhance-resume/generate-suggestions', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({text}),
+                body: JSON.stringify({ text }),
             })
 
             if(!response.ok){
@@ -42,6 +41,7 @@ const UploadResume: React.FC = () => {
 
         } catch (error) {
             console.error('Error extracting text:', error);
+            setLoading(false);
         }
     };
 
