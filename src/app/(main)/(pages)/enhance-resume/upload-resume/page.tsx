@@ -15,17 +15,6 @@ const UploadResume: React.FC = () => {
     const setResumeSuggestions = useEnhanceResumeStore((state) => state.setResumeSuggestions);
     const router = useRouter();
 
-    const onDrop = useCallback((acceptedFiles: File[]) => {
-        const file = acceptedFiles[0];
-        setResumeFile(file);
-        generateSuggestions(file);
-    }, []);
-
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        accept: { 'application/pdf': ['.pdf'] },
-        onDrop
-    });
-
     const generateSuggestions = async (file: File | Blob) => {
         setLoading(true);
         try {
@@ -55,6 +44,18 @@ const UploadResume: React.FC = () => {
             console.error('Error extracting text:', error);
         }
     };
+
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        setResumeFile(file);
+        generateSuggestions(file);
+    }, [setResumeFile, generateSuggestions]);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        accept: { 'application/pdf': ['.pdf'] },
+        onDrop
+    });
+    
 
     return (
     <div className="w-full h-full bg-neutral-950  bg-dot-white/[0.3] relative flex items-center justify-center">

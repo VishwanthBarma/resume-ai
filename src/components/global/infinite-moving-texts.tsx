@@ -20,10 +20,6 @@ export const InfiniteMovingText: React.FC<InfiniteMovingTextProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, []);
-
   const [start, setStart] = useState(false);
 
   function addAnimation() {
@@ -42,6 +38,10 @@ export const InfiniteMovingText: React.FC<InfiniteMovingTextProps> = ({
       setStart(true);
     }
   }
+
+  useEffect(() => {
+    addAnimation();
+  }, [addAnimation]);
 
   const getDirection = () => {
     if (containerRef.current) {
