@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { useGenerateResumeStore } from '@/store/generate-resume-store';
 import { useRouter } from 'next/navigation';
-import { LoaderCircle } from 'lucide-react';
+import { FileText, LoaderCircle } from 'lucide-react';
+import { MeteorCard } from '../global/meteor-card';
 
 interface ResumeCardProps {
     resumeData: ResumeData;
@@ -46,21 +47,29 @@ const ResumeCard: React.FC<ResumeCardProps> = ({ resumeData }) => {
     }
 
     return (
-        <button
-            onClick={handleClick}
-            className='h-64 w-64 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl hover:scale-105 transition ease-in-out'>
-            {
-                loading ? 
-                <>
-                <LoaderCircle className="h-5 w-5 animate-spin"/>
-                </>
-                :
-                <div className='flex flex-col'>
-                    <h1 className='text-sky-500'>{resumeData.templateName}</h1>
-                    <h1 className='text-sm text-slate-500'>Update: {relativeTime}</h1>
-                </div>
-            }
-        </button>
+        <div className="h-64 w-64">
+      <div className="w-full h-full relative max-w-xs">
+        <div className="relative shadow-xl bg-gradient-to-r from-slate-900 to-slate-950 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start gap-1">
+
+            <FileText />
+ 
+          <h1 className="font-bold text-xl text-white mb-4 relative z-50">
+            {resumeData.templateName}
+          </h1>
+ 
+          <h1 className='text-sm mb-2'>Update: <br/>{relativeTime}</h1>
+ 
+          <button
+          onClick={handleClick}
+           className="border px-4 py-1 rounded-lg  border-gray-500 text-gray-300 hover:bg-black">
+            Open
+          </button>
+ 
+          {/* Meaty part - Meteor effect */}
+          <MeteorCard number={20} />
+        </div>
+      </div>
+    </div>
     );
 }
 

@@ -7,7 +7,7 @@ type Props = {}
 const GenerateResume = () => {
   return (
     <div className='p-5 flex flex-col h-full'>
-        <h1 className='text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-500'>
+        <h1 className='text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-500'>
             Generate Resume
         </h1>
         <h1 className='text-xl mt-1 ml-2'>

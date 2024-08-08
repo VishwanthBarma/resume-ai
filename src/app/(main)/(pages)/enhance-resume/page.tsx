@@ -53,9 +53,9 @@ const EnhanceResume = () => {
   return (
     <div className='h-full flex gap-3 py-3 px-5 pb-5'>
         {/* Suggestions Viewer */}
-        <div className='w-2/4 xl:w-3/5 rounded-xl border-2 border-dotted p-4 border-neutral-800 overflow-y-scroll mb-20 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
+        <div className='w-2/4 xl:w-3/5 rounded-xl border-2 border-dotted p-4 border-neutral-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
             <div className=' p-3rounded-xl mb-10 border-b-2 pb-2'>
-                <p className='text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-teal-500'>Enhanced Resume Suggestions<br/> <span className='italic text-lg text-neutral-600'>@{resumeFile?.name}</span></p>
+                <p className='text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-slate-500'>Enhanced Resume Suggestions<br/> <span className='text-[18px] text-neutral-700 font-normal'>@{resumeFile?.name}</span></p>
             </div>
             {/* Render Suggestions */}
             {suggestions.length > 0 ? (

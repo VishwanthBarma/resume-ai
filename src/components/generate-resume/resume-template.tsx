@@ -16,8 +16,8 @@ const ResumeTemplate = ({title, img, url, disable}: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
-    resetState();
     router.push(url);
+    resetState();
   }
 
   return (

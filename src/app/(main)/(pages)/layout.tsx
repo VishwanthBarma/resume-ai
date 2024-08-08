@@ -7,7 +7,7 @@ const Layout = (props: Props) => {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <NavBar />
-      <div className='flex-1 overflow-auto mt-20'>
+      <div className='h-screen pt-20'>
         {props.children}
       </div>
     </div>

@@ -57,17 +57,20 @@ const UploadResume: React.FC = () => {
     };
 
     return (
-        <div className='flex justify-evenly items-center'>
+    <div className="w-full h-full bg-neutral-950  bg-dot-white/[0.3] relative flex items-center justify-center">
+      {/* Radial gradient for the container to give a faded look */}
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-neutral-950  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className='flex justify-center gap-40 items-center w-full'>
             <div className='flex flex-col items-center'>
-                <h1 className='text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-teal-500'>Upload Your Resume</h1>
-                <p className='font-bold text-slate-700 mb-12'>Note: We are not storing your resume in any database.</p>
+                <h1 className='text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-teal-500'>Upload Your Resume</h1>
+                <p className='font-bold text-slate-500 mb-12'>Note: We are not storing your resume in any database.</p>
 
                 {
                     !loading ?
                     <>
                     <div
                         {...getRootProps()}
-                        className={`px-10 flex flex-col items-center py-14 border-2 border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
+                        className={`px-10 flex flex-col items-center py-14 border-2 bg-black border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
                     >
                         <input {...getInputProps()} />
                         <CloudUpload className='h-12 w-12 mb-2'/>
@@ -84,6 +87,7 @@ const UploadResume: React.FC = () => {
                 <Resume3DCard />
             </div>
         </div>
+    </div>
     );
 };
 

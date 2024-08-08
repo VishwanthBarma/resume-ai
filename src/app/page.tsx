@@ -24,21 +24,21 @@ export default function Home() {
           <ContainerScroll
           titleComponent={
             <>
-              <div className="flex items-center justify-center gap-5 my-10 mt-40 mb-8">
+              <div className="flex items-center justify-center gap-10 my-10 mt-40">
                 <Link href={"/enhance-resume/upload-resume"}>
                   <Button
-                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
+                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500 hover:cursor-pointer">
                     <Sparkles className="h-5 w-5 mr-[-8px]" /> Enhance Resume
                   </Button>
                 </Link>
                 <Link href={"/generate-resume"}>
                   <Button 
-                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500">
+                    className="p-6 text-xl w-full sm:w-fit hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500 hover:cursor-pointer">
                     <Brain className="h-5 w-5 mr-[-8px]" /> Generate Resume
                   </Button>
                 </Link>
               </div>
-              <h1 className="text-5xl md:text-8xl  bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
+              <h1 className="text-5xl md:text-8xl  bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold mt-24">
                 <FlipWords words={["Enhance","Generate"]}/>
                 Your Resume With Our Resume.AI 
               </h1>
