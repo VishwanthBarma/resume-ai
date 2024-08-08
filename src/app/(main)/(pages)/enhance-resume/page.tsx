@@ -13,21 +13,22 @@ type Suggestion = {
 };
 
 const EnhanceResume = () => {
+    // Use Zustand store to get resume data
     const resumeFileBase64 = useEnhanceResumeStore((state) => state.resumeFileBase64);
     const resumeSuggestions = useEnhanceResumeStore((state) => state.resumeSuggestions);
 
+    // Function to parse suggestions from JSON text
     const parseSuggestions = (jsonText: string): Suggestion[] => {
         try {
-            if (typeof jsonText !== 'string') {
-                console.error("Invalid type for resumeSuggestions");
+            if(!jsonText){
+                console.log("Error in parsing the suggestions.");
                 return [];
             }
 
             const cleanedText = jsonText.replace(/```json|```/g, '').trim();
-
             const parsed = JSON.parse(cleanedText);
 
-            if (parsed && Array.isArray(parsed.suggestions)) {
+            if (Array.isArray(parsed.suggestions)) {
                 return parsed.suggestions.map((item: { heading: string; description: string }) => ({
                     heading: item.heading,
                     description: item.description
@@ -42,8 +43,10 @@ const EnhanceResume = () => {
         }
     };
 
+    // Parse the suggestions
     const suggestions = parseSuggestions(resumeSuggestions);
 
+    // Convert base64 to File object
     const resumeFile = resumeFileBase64
         ? base64ToFile(resumeFileBase64.base64, resumeFileBase64.name, resumeFileBase64.type)
         : null;
