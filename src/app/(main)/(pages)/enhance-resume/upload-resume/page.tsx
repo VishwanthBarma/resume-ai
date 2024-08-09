@@ -7,6 +7,7 @@ import { CloudUpload } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import toast, { Toaster } from 'react-hot-toast';
 import PDFToText from 'react-pdftotext';
 
 const UploadResume: React.FC = () => {
@@ -41,6 +42,7 @@ const UploadResume: React.FC = () => {
 
         } catch (error) {
             console.error('Error extracting text:', error);
+            toast.error("Error Generating Suggestions. Try Again.")
             setLoading(false);
         }
     };
@@ -58,8 +60,13 @@ const UploadResume: React.FC = () => {
     
 
     return (
-    <div className="w-full h-full bg-neutral-950  bg-dot-white/[0.3] relative flex items-center justify-center">
+    <div className="w-full h-full bg-neutral-950  bg-dot-white/[0.1] relative flex items-center justify-center">
       {/* Radial gradient for the container to give a faded look */}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{ duration: 1500 }}
+      />
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-neutral-950  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div className='flex justify-center gap-40 items-center w-full'>
             <div className='flex flex-col items-center'>

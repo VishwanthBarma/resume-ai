@@ -15,7 +15,7 @@ const Dashboard = async () => {
         <div className='p-10 px-20 flex flex-col gap-3'>
             <div className='flex items-center justify-between'>
                 <h1 className='text-3xl font-bold'>Dashboard</h1>
-                <SignOutButton redirectUrl='/'>
+                <SignOutButton redirectUrl="/">
                     <button className='bg-neutral-900 p-2 px-4 border-[2px] border-slate-800 rounded-xl'>Log Out</button>
                 </SignOutButton>
             </div>

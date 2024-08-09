@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
@@ -15,31 +15,19 @@ export const FlipWords = ({
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
+  // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
-    const nextWord = words[(words.indexOf(currentWord) + 1) % words.length];
-    setCurrentWord(nextWord);
+    const word = words[words.indexOf(currentWord) + 1] || words[0];
+    setCurrentWord(word);
     setIsAnimating(true);
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating) {
-      const timer = setTimeout(() => {
+    if (!isAnimating)
+      setTimeout(() => {
         startAnimation();
       }, duration);
-      return () => clearTimeout(timer); // Clear timeout on unmount
-    }
   }, [isAnimating, duration, startAnimation]);
-
-  const getTextGradient = (word: string) => {
-    switch (word) {
-      case "Enhance":
-        return "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)";
-      case "Generate":
-        return "linear-gradient(160deg, #FBDA61 0%, #FF5ACD 100%)";
-      default:
-        return "linear-gradient(160deg, #000 0%, #000 100%)"; // Default gradient
-    }
-  };
 
   return (
     <AnimatePresence
@@ -48,9 +36,19 @@ export const FlipWords = ({
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+        initial={{
+          opacity: 0,
+          y: 10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
         exit={{
           opacity: 0,
           y: -40,
@@ -60,35 +58,25 @@ export const FlipWords = ({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left px-2",
+          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
           className
         )}
         key={currentWord}
-        style={{ color: "transparent", background: "none" }} // Ensure background is transparent
       >
-        <motion.div
-          style={{
-            background: getTextGradient(currentWord),
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent", // Make sure the text color is transparent to show gradient
-          }}
-        >
-          {currentWord.split("").map((letter, index) => (
-            <motion.span
-              key={currentWord + index}
-              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                delay: index * 0.08,
-                duration: 0.4,
-              }}
-              className="inline-block"
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.div>
+        {currentWord.split("").map((letter, index) => (
+          <motion.span
+            key={currentWord + index}
+            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              delay: index * 0.08,
+              duration: 0.4,
+            }}
+            className="inline-block"
+          >
+            {letter}
+          </motion.span>
+        ))}
       </motion.div>
     </AnimatePresence>
   );

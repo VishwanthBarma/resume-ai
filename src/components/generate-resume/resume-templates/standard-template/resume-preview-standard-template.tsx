@@ -38,7 +38,12 @@ const ResumePreviewStandardTemplate: React.FC<ResumePreviewStandardTemplateProps
                     <h1 className='text-teal-800'>{basicDetails.gmail}</h1>
                 </div>
                 <div>
-                <h1 className='text-2xl font-bold'>{basicDetails.name}</h1>
+                {
+                    basicDetails.name !== '' ?
+                    <h1 className='text-2xl font-bold'>{basicDetails.name}</h1>
+                    :
+                    <h1 className='text-2xl font-bold'>Your Name</h1>
+                }
                 </div>
                     <div className='text-[8px] text-right w-1/5 flex flex-col'>
                         {

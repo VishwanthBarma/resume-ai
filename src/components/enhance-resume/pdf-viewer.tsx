@@ -25,7 +25,7 @@ const PdfViewer = ({ resumeFile }: Props) => {
 
 
   return ( 
-    <div className='flex flex-col items-center gap-4'>
+    <div className='flex flex-col items-center gap-4 h-full'>
       <div className='flex items-center md:text-sm text-xs w-full justify-center md:gap-4 gap-1'>
         <button
         className='bg-neutral-900 border-2 p-2 rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50'
@@ -76,7 +76,7 @@ const PdfViewer = ({ resumeFile }: Props) => {
         </button>
       </div>
 
-      <div className='w-full max-h-[750px] flex justify-center'>
+      <div className='w-full max-h-full flex justify-center'>
         <div className='overflow-scroll rounded-lg shadow-lg shadow-gray-500'>
           <Document
             loading={null}

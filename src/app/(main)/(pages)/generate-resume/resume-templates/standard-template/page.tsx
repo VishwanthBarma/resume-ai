@@ -56,33 +56,19 @@ const StandardTemplate = () => {
 
     try {
       const result = await saveResumeProgress(user.id, resumeId, resumeData);
-      if (result.success) {
-        
-        setResumeId(result.resumeId ? result.resumeId : null);
 
-        toast("Progress Saved Successfully", {
-          position: 'top-center',
-          duration: 1500,
-          icon: '🎉'
-        })
+      if (result.success) {
+        setResumeId(result.resumeId ? result.resumeId : null);
+        
+        toast.success('Progress Saved Successfully')
         console.log('Resume saved successfully with ID:', result.resumeId);
 
       } else {
-        toast("Failed to save resume progress", {
-          position: 'top-center',
-          duration: 1500,
-          icon: '❌'
-        })
-
+        toast.error("Failed to save progress. Try again.")
         console.error('Failed to save resume:', result.error);
       }
     } catch (error) {
-      toast("Error saving resume progress", {
-        position: 'top-center',
-        duration: 1500,
-        icon: '🚫'
-      })
-
+      toast.error("Error saving resume progress. Try again.")
       console.error('Error saving resume progress:', error);
     } finally {
       setSaving(false);
@@ -91,7 +77,11 @@ const StandardTemplate = () => {
 
   return (
     <div className='flex gap-10 h-full p-6 px-14'>
-      <Toaster />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{ duration: 1500 }}
+      />
       <div className='flex-1 flex flex-col gap-4 h-full'>
         <div className='flex justify-between'>
           <h1

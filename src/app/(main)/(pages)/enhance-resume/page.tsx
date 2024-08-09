@@ -36,7 +36,7 @@ const EnhanceResume = () => {
                     description: item.description
                 }));
             } else {
-                console.warn("Parsed data does not have the expected 'suggestions' key or it is not an array.");
+                console.log("Parsed data does not have the expected 'suggestions' key or it is not an array.");
                 return [];
             }
         } catch (error) {
@@ -56,11 +56,11 @@ const EnhanceResume = () => {
     return (
         <div className='h-full flex gap-3 py-3 px-5 pb-5'>
             {/* Suggestions Viewer */}
-            <div className='w-2/4 xl:w-3/5 rounded-xl border-2 border-dotted p-4 border-neutral-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
+            <div className='w-2/4 xl:w-3/5 rounded-xl border-2 p-4 border-neutral-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-700'>
                 <div className='p-3 rounded-xl mb-10 border-b-2 pb-2'>
                     <p className='text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-slate-500'>
                         Enhanced Resume Suggestions<br />
-                        <span className='text-[18px] text-neutral-700 font-normal'>@{resumeFile?.name}</span>
+                        <span className='text-[14px] text-slate-300 font-normal border-[2px] border-dotted border-sky-500/50 p-1 rounded-lg'>@{resumeFile?.name}</span>
                     </p>
                 </div>
                 {/* Render Suggestions */}
@@ -73,12 +73,12 @@ const EnhanceResume = () => {
                         />
                     ))
                 ) : (
-                    <p className='text-neutral-500'>No suggestions available</p>
+                    <p className='text-neutral-500 text-sm'>Error in Parsing the Generated Suggestions. Try Again.</p>
                 )}
             </div>
 
             {/* PDF Viewer */}
-            <div className='w-2/4 xl:w-2/5'>
+            <div className='w-2/4 xl:w-2/5 h-full'>
                 {resumeFile ? (
                     <PdfViewer resumeFile={resumeFile} />
                 ) : (

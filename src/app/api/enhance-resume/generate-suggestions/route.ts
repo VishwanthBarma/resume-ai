@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
             ]
         }
 
-        give me the output in such a way that, i can directly parse it into json.
+        Give me the correct json format without voilating the rules of JSON object, give me the accurate json object.
         `
         
         const result = await model.generateContent(prompt);
