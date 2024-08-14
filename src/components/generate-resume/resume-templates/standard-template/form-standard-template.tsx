@@ -190,72 +190,59 @@ const FormStandardTemplate: React.FC<FormStandardTemplateProps>  = (  {
                 {/* Education */}
                 {
                     currentStep === 2 && 
-                    <>
                     <FormEducation
                     education={education}
                     setEducation={setEducation}
                     />
-                    </>
                 }
 
                 
                 {/* TechnialExperience */}
                 {
                     currentStep === 3 && 
-                    <>
                     <FormTechnicalExperience
                         technicalExperience={technicalExperience}
                         setTechnicalExperience={setTechnicalExperience}
                         scrollToTop={scrollToTop}
                     />
-                    </>
                 }
 
 
                 {/* Skills */}
                 {
                     currentStep === 4 &&
-                    <>
                     <FormSkills skills={skills} setSkills={setSkills} />
-                    </>
                 }
 
 
                 {/* Projects */}
                 {
                     currentStep === 5 &&
-                    <>
                     <FormProjects 
                     projects={projects}
                     setProjects={setProjects}
                     scrollToTop={scrollToTop}
                     />
-                    </>
                 }
 
 
                 {/* Certificates */}
                 {
                     currentStep === 6 &&
-                    <>
                     <FormCertificates
                     certificates={certificates}
                     setCertificates={setCertificates}
                     />
-
-                    </>
                 }
 
 
                 {/* Achievements */}
                 {
                     currentStep === 7 && 
-                    <>
                     <FormAchievements
                     achievements={achievements}
                     setAchievements={setAchievements}
                     />
-                    </>
                 }
 
 

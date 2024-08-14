@@ -75,7 +75,6 @@ const UploadResume: React.FC = () => {
 
                 {
                     !loading ?
-                    <>
                     <div
                         {...getRootProps()}
                         className={`px-10 flex flex-col items-center py-14 border-2 bg-black border-dashed cursor-pointer ${isDragActive ? 'border-sky-500' : 'border-gray-300'} rounded-lg`}
@@ -84,11 +83,8 @@ const UploadResume: React.FC = () => {
                         <CloudUpload className='h-12 w-12 mb-2'/>
                         <p>Drop your resume here or choose a file.</p>
                     </div>
-                    </>
                     :
-                    <>
                     <ShiningText />
-                    </>
                 }
             </div>
             <div className='animate-pulse'>

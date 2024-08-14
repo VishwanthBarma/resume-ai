@@ -159,3 +159,34 @@ body, html{
   animation: suggestion-shine 2s linear infinite;
 }
 
+@keyframes blur-in {
+  from {
+    filter: blur(4px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+
+@keyframes blur-out {
+  from {
+    filter: blur(0);
+  }
+  to {
+    filter: blur(4px);
+  }
+}
+
+.transition-filter {
+  transition: filter 0.5s ease-in-out;
+}
+
+.blur-in {
+  animation: blur-in 0.9s forwards;
+}
+
+.blur-out {
+  animation: blur-out 0.9s forwards;
+}
+
+

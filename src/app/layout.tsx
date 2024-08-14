@@ -3,6 +3,7 @@ import { DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from '@clerk/nextjs'
+import LoadingAnimatoin from "@/components/loading/loading-animation";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
                 disableTransitionOnChange
               >
                 {children}
+
           </ThemeProvider>
         </body>
       </html>
