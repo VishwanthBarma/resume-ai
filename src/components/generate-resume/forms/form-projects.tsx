@@ -3,6 +3,7 @@ import { ProjectItem, Projects } from '@/lib/types';
 import { ArrowLeft, ArrowRight, Brain, FilePenLine, Loader } from 'lucide-react';
 import GenerateAIDescriptionCard from '../generate-ai-description-card';
 import FormSectionNavigationButtons from '../form-section-navigation-buttons';
+import toast from 'react-hot-toast';
 
 interface FormProjectsProps {
   projects: Projects;
@@ -42,7 +43,9 @@ const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scro
             });
 
             if (!response.ok) {
-                throw new Error("Failed to fetch Description Suggestions.");
+                toast.error("Failed to Generate Suggestion");
+                console.log("Failed to fetch Description Suggestions.");
+                return;
             }
 
             const result = await response.json();
@@ -51,8 +54,10 @@ const FormProjects: React.FC<FormProjectsProps> = ({ projects, setProjects, scro
             setUserDescription(suggestion);
 
             console.log("Description Suggestion Successful.");
+            toast.success("Generated Suggestion Successfully.");
 
         } catch (error) {
+            toast.error("Error in Generating Suggestion")
             console.log("Error in fetching the AI generated description.");
         } finally {
             setLoading(false);

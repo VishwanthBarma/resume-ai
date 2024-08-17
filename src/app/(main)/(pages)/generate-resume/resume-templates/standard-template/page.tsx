@@ -60,15 +60,15 @@ const StandardTemplate = () => {
       if (result.success) {
         setResumeId(result.resumeId ? result.resumeId : null);
         
-        toast.success('Progress Saved Successfully')
+        toast.success('Progress Saved Successfully');
         console.log('Resume saved successfully with ID:', result.resumeId);
 
       } else {
-        toast.error("Failed to save progress. Try again.")
+        toast.error("Failed to save progress. Try again.");
         console.error('Failed to save resume:', result.error);
       }
     } catch (error) {
-      toast.error("Error saving resume progress. Try again.")
+      toast.error("Error saving resume progress. Try again.");
       console.error('Error saving resume progress:', error);
     } finally {
       setSaving(false);
@@ -109,7 +109,7 @@ const StandardTemplate = () => {
 
             <div className='flex relative'>         
                 <button
-                disabled={!isSignedIn && isLoaded}
+                disabled={!isSignedIn}
                   onClick={handleSaveProgress}
                       className='bg-neutral-900 border-2 py-2 w-20 justify-center rounded-lg flex items-center hover:opacity-90 disabled:cursor-default disabled:opacity-50'
                   >

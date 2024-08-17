@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TechnicalExperience, TechnicalExperienceItem } from '@/lib/types';
 import GenerateAIDescriptionCard from '@/components/generate-resume/generate-ai-description-card';
 import FormSectionNavigationButtons from '../form-section-navigation-buttons';
+import toast from 'react-hot-toast';
 
 interface Props {
   technicalExperience: TechnicalExperience;
@@ -41,7 +42,9 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
           });
     
           if (!response.ok) {
-            throw new Error("Failed to fetch Description Suggestions.");
+            toast.error("Failed to Generate Suggestion")
+            console.log("Failed to fetch Description Suggestions.");
+            return;
           }
     
           const result = await response.json();
@@ -50,8 +53,10 @@ const FormTechnicalExperience: React.FC<Props> = ({ technicalExperience, setTech
           setUserDescription(suggestion);
     
           console.log("Description Suggestion Successful.");
+          toast.success('Generated Suggestion Successfully');
         } catch (error) {
           console.log("Error in fetching the AI generated description.");
+          toast.error("Error in Generating Suggestion")
         } finally {
           setLoading(false);
         }
